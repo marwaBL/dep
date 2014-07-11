@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <link rel="stylesheet" type="text/css" href="modifierProfil.css"/>
+            <script></script>
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Modifier Profil</title>
+                
+ 
+                     
+           
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit  styleClass="ui-north" position="north" size="60"  >
+  <ui:include src="header.xhtml" />                   
+                </p:layoutUnit>
+
+                
+
+              
+                <p:layoutUnit position="center"  styleClass="ui-center">
+                   
+                    <h:form id="form" styleClass="formulaire" style="font: 13px Arial, Helvetica, cursive;">  
+          
+              <p:panel>           
+           
+                  <p:tabMenu activeIndex="#{modifierProfilController.index}"  style="width: 960px; font: 12px Arial; ">  
+               <p:menuitem value="Informations Personnelles "   action="#{modifierProfilController.displayprofil()}" update="form"  style=" font:bold 14px Arial, Helvetica, cursive;"/>  
+
+               <p:menuitem value="Informations Professionnelles" action="#{modifierProfilController.displaypublication()}" update="form" style=" font:bold 14px Arial, Helvetica, cursive;"  >
+                  
+               </p:menuitem>  
+               <p:menuitem value="Informations Professionnelles Supplementaires"  rendered="#{modifierProfilController.displaypanelType()}" id="grid2" action="#{modifierProfilController.displaysupp()}" update="form"  style=" font:bold 14px Arial, Helvetica, cursive;"/>  
+    </p:tabMenu> 
+  <p:growl id="messages" showDetail="true" life="2000"/>
+  <p:outputPanel id="gridContainer" layout="block" rendered="#{modifierProfilController.test}" >
+           <h:panelGrid  columns="3" cellpadding="15" id="panel1">   
+               <p:graphicImage id="photo"  width="150" height="150"  value="#{profilController.image}" /> 
+             
+
+                <p:overlayPanel id="photoch" for="photo" hideEffect="fade" >  
+        <p:fileUpload  mode="advanced" dragDropSupport="false" update="messages,panel1"  fileUploadListener="#{profilController.handleFileUpload}"
+                     
+                  sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  invalidSizeMessage="The maximum file size allowed is 10 Megabytes !"
+                 invalidFileMessage="You are allowed to upload only documents !" />
+ 
+    </p:overlayPanel>  
+               <h:panelGrid  columns="1" >  
+              
+          
+               
+                   <p:outputLabel value="#{modifierProfilController.type}" style=" font-weight:bolder ;"></p:outputLabel>
+           </h:panelGrid>
+
+                </h:panelGrid>   
+                 <h:panelGrid columns="5" id ="panel"   cellspacing="15" >  
+            <h:outputLabel  value="Nom et prenom:*" />  
+            <p:inputText  id="nom" required="true" requiredMessage="Vous devez indiquer le nom " 
+                         label="nomprenom"  value="#{modifierProfilController.nom}"   style="margin-left: 18px"  />
+             <p:watermark for="nom" value="Nom " />  
+             <p:inputText id="prenom" required="true" requiredMessage="Vous devez indiquer le nom et prenom " 
+                          label="nomprenom" value="#{modifierProfilController.prenom}"     />
+             <p:watermark for="prenom" value="Prémom" />  
+             </h:panelGrid >
+              <h:panelGrid columns="2" cellspacing="15" > 
+        <h:outputText value="Sexe: " />  
+        <p:selectOneRadio id="sexe"  style="margin-left: 90px"  requiredMessage="Vous devez indiquer le sexe "
+                          required="true"   value="#{modifierProfilController.sexe}"    >  
+            <f:selectItem itemLabel="Homme" itemValue="Homme" />  
+            <f:selectItem itemLabel="Femme" itemValue="Femme" />  
+            <p:ajax update="gridContainer,sexe"  event="click"
+                      />
+        </p:selectOneRadio> 
+         </h:panelGrid>
+<p:outputPanel id="gridContainer2" layout="block"  >
+             <h:panelGrid columns="2" id="panelfemme" cellspacing="15" rendered="#{modifierProfilController.displaypanel()}"   > 
+        <h:outputText value="Nom jeune fille: " />  
+        <p:inputText id="nomjeunefille" value="#{modifierProfilController.nomJF}" label="nomjeunefille"  style="margin-left: 30px"  />
+          
+       
+         </h:panelGrid>
+     </p:outputPanel>
+        <h:panelGrid columns="4"  cellspacing="15"  > 
+            <h:outputLabel for="datenais" value="Date de Naissance:" />  
+            <p:calendar effect="slide" id="datenais" required="true" value="#{modifierProfilController.datenais}" requiredMessage="Vous devez indiquer la date de naissance" style="margin-left: 5px" /> 
+            <h:outputLabel for="lieunais" value="Lieu de Naissance:" /> 
+            <p:inputText id="lieunais" required="true"  value="#{modifierProfilController.lieunais}"
+   requiredMessage="Vous devez indiquer le lieu de naissance " label="lieunais"  style="margin-left: 5px"  />
+            
+      </h:panelGrid>
+           
+
+         <h:panelGrid columns="4"  cellspacing="15"  > 
+            <h:outputLabel for="cin" value="CIN:" />  
+            <p:inputMask id="cin"  label="cin" value="#{modifierProfilController.cin}" style=" margin-left: 93px"   mask="99999999"/>
+               
+            
+            <h:outputLabel for="passport" value="N°passport:" /> 
+            <p:inputText id="passport"  label="N°passport" value="#{modifierProfilController.passport}" style="margin-left: 50px"   />
+            
+      </h:panelGrid>    
+               <h:panelGrid columns="4"  cellspacing="15"  > 
+            <h:outputLabel for="tel" value="Telephone:" />  
+            <p:inputText id="tel"  label="tel" required="true" value="#{modifierProfilController.tel}" style="margin-left: 55px"  />
+               
+            
+            <h:outputLabel for="email" value="Email:" /> 
+            <p:inputText id="email" required="true" label="email" value="#{modifierProfilController.mail}" style="margin-left: 80px" size="40"   />
+            
+      </h:panelGrid> 
+        
+             
+           
+           </p:outputPanel>
+  <p:outputPanel id="gridpub" layout="block" rendered="#{modifierProfilController.pub}" >
+           <h:panelGrid columns="2"  cellspacing="15"  > 
+            <h:outputLabel for="type" value="Type:" />  
+           
+            <p:selectOneMenu id="type"  style="width: 150px;margin-left: 95px" value="#{modifierProfilController.type}" requiredMessage="Vous devez indiquer le type " required="true"   >  
+                 <f:selectItem itemLabel="" itemValue="" />  
+                 <f:selectItem itemLabel="Etudiant en Master" itemValue="Etudiant en Master" /> 
+                 <f:selectItem itemLabel="Doctorant" itemValue="Doctorant" /> 
+                 <f:selectItem itemLabel="Docteur" itemValue="Docteur" /> 
+                 <f:selectItem itemLabel="Docteur Habilité" itemValue="Docteur Habilité" /> 
+
+                <p:ajax   update ="@form" 
+                      />
+            </p:selectOneMenu> 
+            </h:panelGrid>  
+              <h:panelGrid columns="6"  cellspacing="15"   > 
+            <h:outputLabel for="fonction" value="Fonction:" />  
+           
+            <p:selectOneMenu id="fonction"   style="width: 150px;margin-left: 68px" value="#{modifierProfilController.fonction}" >  
+                 <f:selectItem itemLabel="" itemValue="" />  
+                 <f:selectItem itemLabel="Chef de département" itemValue="Chef de département" /> 
+                 <f:selectItem itemLabel="Doyen" itemValue="Doyen" /> 
+ <p:ajax update="fonction"  
+            event="change" /> 
+           
+              
+            </p:selectOneMenu>  
+            
+             <h:outputLabel for="combuniv" value="Université:" style="margin-left: 15px"/>  
+             <p:selectOneMenu id="combuniv"   style="width: 150px;margin-left: 45px" value="#{modifierProfilController.libunivfonction}" >  
+                <f:selectItem itemLabel="Université" itemValue="" />  
+                <f:selectItems value="#{modifierProfilController.universites}" />  
+              <p:ajax update="combetab"  event="change"
+                      listener="#{modifierProfilController.findEtablissementByCodeUniv()}"    /> 
+            </p:selectOneMenu>  
+   <h:outputLabel for="combetab" value="Etablissement:" style="margin-left: 10px" />  
+   <p:selectOneMenu id="combetab"  style="width: 150px" value="#{modifierProfilController.libetabfonction}" >  
+                <f:selectItem itemLabel="Etablissement" itemValue="" />  
+                <f:selectItems value="#{modifierProfilController.etablissements1}" />  
+            </p:selectOneMenu>
+            
+      </h:panelGrid>  
+              <h:panelGrid columns="6"  cellspacing="15"  > 
+            <h:outputLabel for="grade" value="Grade:" />  
+           
+            <p:selectOneMenu id="grade"  style="width: 150px;margin-left: 85px" value="#{modifierProfilController.grade}" >  
+                 <f:selectItem itemLabel="" itemValue="" />  
+                 <f:selectItem itemLabel="Assistant" itemValue="Assistant" /> 
+                 <f:selectItem itemLabel="Maitre Assistant" itemValue="Maitre assistant" /> 
+                 <f:selectItem itemLabel="Maitre de conférence" itemValue="Maitre de conférence" /> 
+                 <f:selectItem itemLabel="Professeur" itemValue="Professeur" /> 
+
+                 
+              
+            </p:selectOneMenu>  
+            
+              <h:outputLabel for="combuniv1" value="Université:" style="margin-left: 15px"/>  
+              <p:selectOneMenu id="combuniv1"   style="width: 150px;margin-left: 45px" value="#{modifierProfilController.libunivgrade}" >  
+                <f:selectItem itemLabel="Université" itemValue="" />  
+                <f:selectItems value="#{modifierProfilController.universites}" />  
+              <p:ajax update="combetab1"  
+                      listener="#{modifierProfilController.findEtablissementByCodeUniv()}"    /> 
+            </p:selectOneMenu>  
+   <h:outputLabel for="combetab1" value="Etablissement:" style="margin-left: 10px" />  
+   <p:selectOneMenu id="combetab1"  style="width: 150px" value="#{modifierProfilController.libetabgrade}" >  
+                <f:selectItem itemLabel="Etablissement" itemValue="" />  
+                <f:selectItems value="#{modifierProfilController.etablissements2}" />  
+            </p:selectOneMenu> 
+            
+      </h:panelGrid>
+            
+               
+                
+            </p:outputPanel>
+        
+  <p:outputPanel id="gridpub2" layout="block" rendered="#{modifierProfilController.supp}" >
+  
+  <h:panelGrid columns="5"   cellpadding="15"  >  
+            <h:outputLabel for="sujet" value="Sujet:*" />  
+            <p:inputText id="sujet"  required="true" label="sujet"  style="margin-left: 35px" size="60" value="#{modifierProfilController.sujet}" />
+
+            
+             
+             
+            
+      </h:panelGrid> 
+              <h:panelGrid columns="7"  cellspacing="15"   > 
+              <h:outputLabel for="annee" value="Inscription:*"  />  
+              <p:inputMask  id="annee"  label="annee"   size="10" style="margin-left: 10px" value="#{modifierProfilController.anneeinscri}" required="true" mask="9999" />
+        <p:watermark for="annee" value="annee" /> 
+              <h:outputLabel for="combuniv3" value="Université:*" style="margin-left: 55px"/>  
+              <p:selectOneMenu id="combuniv3" value="#{modifierProfilController.univinscri}" required="true" requiredMessage="Vous devez selctionner l'universite " style="width: 150px;margin-left: 55px" >  
+                <f:selectItem itemLabel="Université" itemValue="" />  
+               
+                <f:selectItems value="#{modifierProfilController.universites}" />  
+              <p:ajax update="combetab3"  
+                      listener="#{modifierProfilController.findEtablissementByCodeUniv()}" />
+            </p:selectOneMenu>  
+   <h:outputLabel for="combetab3" value="Etablissement:*" style="margin-left: 15px" />  
+   <p:selectOneMenu id="combetab3" value="#{modifierProfilController.etabinscri}" required="true" requiredMessage="Vous devez selectionner l'etablissement" style="width: 150px;"  >  
+                <f:selectItem itemLabel="Etablissement" itemValue="" />  
+                <f:selectItems value="#{modifierProfilController.etablissements3}" />
+            </p:selectOneMenu> 
+            
+      </h:panelGrid> 
+              <h:panelGrid columns="5"   cellpadding="15"  >  
+            <h:outputLabel for="directeur" value="Directeur:*" />  
+            <p:inputText id="directeur" required="true" label="directeur" value="#{modifierProfilController.nomdirecteurthese}" style="margin-left: 5px"  />
+ 
+               <p:watermark for="directeur" value="Nom"/> 
+               <p:inputText id="direct" required="true" label="directeur" value="#{modifierProfilController.prenomdirecteurthese}" style="margin-left: -55px"   />
+ 
+               <p:watermark for="direct" value="Prémom" /> 
+              </h:panelGrid>
+  </p:outputPanel>
+  
+  
+        <!--   <p:accordionPanel cache="true" styleClass="panel" id="accord" >  
+        <p:tab title="Informations personnelles ">  
+           <h:panelGrid columns="5" id ="panel"   cellspacing="15" >  
+            <h:outputLabel  value="Nom et prenom:*" />  
+            <p:inputText  id="nom" required="true" requiredMessage="Vous devez indiquer le nom " 
+                         label="nomprenom"  value="#{modifierProfilController.nom}"   style="margin-left: 18px"  />
+             <p:watermark for="nom" value="Nom " />  
+             <p:inputText id="prenom" required="true" requiredMessage="Vous devez indiquer le nom et prenom " 
+                          label="nomprenom" value="#{modifierProfilController.prenom}"     />
+             <p:watermark for="prenom" value="Prémom" />  
+             </h:panelGrid >
+              <h:panelGrid columns="2" cellspacing="15" > 
+        <h:outputText value="Sexe: " />  
+        <p:selectOneRadio id="sexe"  style="margin-left: 90px"  requiredMessage="Vous devez indiquer le sexe "
+                          required="true"   value="#{modifierProfilController.sexe}"    >  
+            <f:selectItem itemLabel="Homme" itemValue="Homme" />  
+            <f:selectItem itemLabel="Femme" itemValue="Femme" />  
+            <p:ajax update="gridContainer,sexe"  event="click"
+                      />
+        </p:selectOneRadio> 
+         </h:panelGrid>
+<p:outputPanel id="gridContainer" layout="block"  >
+             <h:panelGrid columns="2" id="panelfemme" cellspacing="15" rendered="#{modifierProfilController.displaypanel()}"   > 
+        <h:outputText value="Nom jeune fille: " />  
+        <p:inputText id="nomjeunefille" value="#{modifierProfilController.nomJF}" label="nomjeunefille"  style="margin-left: 25px"  />
+          
+       
+         </h:panelGrid>
+     </p:outputPanel>
+        <h:panelGrid columns="4"  cellspacing="15"  > 
+            <h:outputLabel for="datenais" value="Date de Naissance:" />  
+            <p:calendar effect="slide" id="datenais" required="true" value="#{modifierProfilController.datenais}" requiredMessage="Vous devez indiquer la date de naissance" style="margin-left: 5px" /> 
+            <h:outputLabel for="lieunais" value="Lieu de Naissance:" /> 
+            <p:inputText id="lieunais" required="true"  value="#{modifierProfilController.lieunais}"
+   requiredMessage="Vous devez indiquer le lieu de naissance " label="lieunais"  style="margin-left: 5px"  />
+            
+      </h:panelGrid>
+           
+
+         <h:panelGrid columns="4"  cellspacing="15"  > 
+            <h:outputLabel for="cin" value="CIN:" />  
+            <p:inputMask id="cin"  label="cin" value="#{modifierProfilController.cin}" style=" margin-left: 105px"   mask="99999999"/>
+               
+            
+            <h:outputLabel for="passport" value="N°passport:" /> 
+            <p:inputText id="passport"  label="N°passport" value="#{modifierProfilController.passport}" style="margin-left: 50px"   />
+            
+      </h:panelGrid>    
+               <h:panelGrid columns="4"  cellspacing="15"  > 
+            <h:outputLabel for="tel" value="Telephone:" />  
+            <p:inputText id="tel"  label="tel" required="true" value="#{modifierProfilController.tel}" style="margin-left: 55px"  />
+               
+            
+            <h:outputLabel for="email" value="Email:" /> 
+            <p:inputText id="email" required="true" label="email" value="#{modifierProfilController.mail}" style="margin-left: 90px" size="40"   />
+            
+      </h:panelGrid>   
+        </p:tab>  
+        <p:tab title="Informations professionnelles">  
+           <h:panelGrid columns="2"  cellspacing="15"  > 
+            <h:outputLabel for="type" value="Type:" />  
+           
+            <p:selectOneMenu id="type"  style="width: 150px;margin-left: 95px" value="#{modifierProfilController.type}" requiredMessage="Vous devez indiquer le type " required="true"   >  
+                 <f:selectItem itemLabel="" itemValue="" />  
+                 <f:selectItem itemLabel="Etudiant en Master" itemValue="Etudiant en Master" /> 
+                 <f:selectItem itemLabel="Doctorant" itemValue="Doctorant" /> 
+                 <f:selectItem itemLabel="Docteur" itemValue="Docteur" /> 
+                 <f:selectItem itemLabel="Docteur Habilité" itemValue="Docteur Habilité" /> 
+
+                 <p:ajax   update ="accord" 
+                      />
+              
+            </p:selectOneMenu> 
+            </h:panelGrid>  
+              <h:panelGrid columns="6"  cellspacing="15"   > 
+            <h:outputLabel for="fonction" value="Fonction:" />  
+           
+            <p:selectOneMenu id="fonction"   style="width: 150px;margin-left: 68px" value="#{modifierProfilController.fonction}" >  
+                 <f:selectItem itemLabel="" itemValue="" />  
+                 <f:selectItem itemLabel="Chef de département" itemValue="Chef de département" /> 
+                 <f:selectItem itemLabel="Doyen" itemValue="Doyen" /> 
+ <p:ajax update="fonction"  
+            event="change" /> 
+           
+              
+            </p:selectOneMenu>  
+            
+             <h:outputLabel for="combuniv" value="Université:" style="margin-left: 15px"/>  
+             <p:selectOneMenu id="combuniv"   style="width: 150px;margin-left: 45px" value="#{modifierProfilController.libunivfonction}" >  
+                <f:selectItem itemLabel="Université" itemValue="" />  
+                <f:selectItems value="#{modifierProfilController.universites}" />  
+              <p:ajax update="combetab"  event="change"
+                      listener="#{modifierProfilController.findEtablissementByCodeUniv()}"    /> 
+            </p:selectOneMenu>  
+   <h:outputLabel for="combetab" value="Etablissement:" style="margin-left: 10px" />  
+   <p:selectOneMenu id="combetab"  style="width: 150px" value="#{modifierProfilController.libetabfonction}" >  
+                <f:selectItem itemLabel="Etablissement" itemValue="" />  
+                <f:selectItems value="#{modifierProfilController.etablissements1}" />  
+            </p:selectOneMenu>
+            
+      </h:panelGrid>  
+              <h:panelGrid columns="6"  cellspacing="15"  > 
+            <h:outputLabel for="grade" value="Grade:" />  
+           
+            <p:selectOneMenu id="grade"  style="width: 150px;margin-left: 85px" value="#{modifierProfilController.grade}" >  
+                 <f:selectItem itemLabel="" itemValue="" />  
+                 <f:selectItem itemLabel="Assistant" itemValue="Assistant" /> 
+                 <f:selectItem itemLabel="Maitre Assistant" itemValue="Maitre assistant" /> 
+                 <f:selectItem itemLabel="Maitre de conférence" itemValue="Maitre de conférence" /> 
+                 <f:selectItem itemLabel="Professeur" itemValue="Professeur" /> 
+
+                 
+              
+            </p:selectOneMenu>  
+            
+              <h:outputLabel for="combuniv1" value="Université:" style="margin-left: 15px"/>  
+              <p:selectOneMenu id="combuniv1"   style="width: 150px;margin-left: 45px" value="#{modifierProfilController.libunivgrade}" >  
+                <f:selectItem itemLabel="Université" itemValue="" />  
+                <f:selectItems value="#{modifierProfilController.universites}" />  
+              <p:ajax update="combetab1"  
+                      listener="#{modifierProfilController.findEtablissementByCodeUniv()}"    /> 
+            </p:selectOneMenu>  
+   <h:outputLabel for="combetab1" value="Etablissement:" style="margin-left: 10px" />  
+   <p:selectOneMenu id="combetab1"  style="width: 150px" value="#{modifierProfilController.libetabgrade}" >  
+                <f:selectItem itemLabel="Etablissement" itemValue="" />  
+                <f:selectItems value="#{modifierProfilController.etablissements2}" />  
+            </p:selectOneMenu> 
+            
+      </h:panelGrid>
+            
+        </p:tab>  
+               <p:tab title="Informations Professionnelles Supplementaires"  id="grid2" rendered="#{modifierProfilController.displaypanelType()}">  
+              
+            
+                    <h:panelGrid columns="5"   cellpadding="15"  >  
+            <h:outputLabel for="sujet" value="Sujet:*" />  
+            <p:inputText id="sujet"  required="true" label="sujet"  style="margin-left: 35px" size="60" value="#{modifierProfilController.sujet}" />
+
+            
+             
+              <h:outputLabel for="avancement" value="Avancement:*" />  
+              <p:inputMask id="avancement"  label="avancement"   required="true" requiredMessage="Vous devez indiquer l'avancement"   size="5" mask="99" value="#{modifierProfilController.avancement}" />
+           <p:watermark for="avancement" value="%" /> 
+      
+            
+      </h:panelGrid> 
+              <h:panelGrid columns="7"  cellspacing="15"   > 
+              <h:outputLabel for="annee" value="Inscription:*"  />  
+              <p:inputMask  id="annee"  label="annee"   size="10" style="margin-left: 10px" value="#{modifierProfilController.anneeinscri}" required="true" mask="9999" />
+        <p:watermark for="annee" value="annee" /> 
+              <h:outputLabel for="combuniv3" value="Université:*" style="margin-left: 55px"/>  
+              <p:selectOneMenu id="combuniv3" value="#{modifierProfilController.univinscri}" required="true" requiredMessage="Vous devez selctionner l'universite " style="width: 150px;margin-left: 55px" >  
+                <f:selectItem itemLabel="Université" itemValue="" />  
+               
+                <f:selectItems value="#{modifierProfilController.universites}" />  
+              <p:ajax update="combetab3"  
+                      listener="#{modifierProfilController.findEtablissementByCodeUniv()}" />
+            </p:selectOneMenu>  
+   <h:outputLabel for="combetab3" value="Etablissement:*" style="margin-left: 15px" />  
+   <p:selectOneMenu id="combetab3" value="#{modifierProfilController.etabinscri}" required="true" requiredMessage="Vous devez selectionner l'etablissement" style="width: 150px;"  >  
+                <f:selectItem itemLabel="Etablissement" itemValue="" />  
+                <f:selectItems value="#{modifierProfilController.etablissements3}" />
+            </p:selectOneMenu> 
+            
+      </h:panelGrid> 
+              <h:panelGrid columns="5"   cellpadding="15"  >  
+            <h:outputLabel for="directeur" value="Directeur:*" />  
+            <p:inputText id="directeur" required="true" label="directeur" value="#{modifierProfilController.nomdirecteurthese}" style="margin-left: 5px"  />
+ 
+               <p:watermark for="directeur" value="Nom"/> 
+               <p:inputText id="direct" required="true" label="directeur" value="#{modifierProfilController.prenomdirecteurthese}" style="margin-left: -55px"   />
+ 
+               <p:watermark for="direct" value="Prémom" /> 
+              </h:panelGrid> 
+                
+        </p:tab>  
+    </p:accordionPanel>  -->
+  
+        <p:commandButton value="Modifier"   update="@form" process="@form" action="#{modifierProfilController.modifier()}"  styleClass="ui-icon-excelmodif" style=" font:bold 14px Arial, Helvetica, cursive; color: #ffffff">
+                   
+               </p:commandButton>      
+                
+      
+             <script type="text/javascript">  
+    function handleLoginRequest(xhr, status, args) {  
+        if(args.validationFailed || !args.loggedIn) {  
+            dlg.jq.effect("shake", { times:5 }, 100);  
+        }   
+        else {  
+            dlg.hide();  
+            $('#loginLink').fadeOut();  
+        }  
+    }  
+   
+</script> 
+         </p:panel>
+            </h:form>
+                   
+                </p:layoutUnit>
+               
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+

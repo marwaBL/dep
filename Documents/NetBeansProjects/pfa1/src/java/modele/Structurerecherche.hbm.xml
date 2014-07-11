@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 juin 2014 14:56:25 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="modele.Structurerecherche" table="structurerecherche" catalog="pfa1">
+        <id name="code" type="string">
+            <column name="Code" length="254" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="chercheur" class="modele.Chercheur" fetch="select">
+            <column name="IdCh" not-null="true" />
+        </many-to-one>
+        <many-to-one name="etablissement" class="modele.Etablissement" fetch="select">
+            <column name="CodeEtab" not-null="true" />
+        </many-to-one>
+        <property name="denomination" type="string">
+            <column name="Denomination" length="254" />
+        </property>
+        <property name="type" type="string">
+            <column name="Type" length="254" />
+        </property>
+        <property name="discipline" type="string">
+            <column name="Discipline" length="254" />
+        </property>
+        <property name="site" type="string">
+            <column name="Site" length="254" />
+        </property>
+        <property name="dateDeb" type="timestamp">
+            <column name="DateDeb" length="19" not-null="true" />
+        </property>
+        <property name="dateFin" type="timestamp">
+            <column name="DateFin" length="19" not-null="true" />
+        </property>
+        <set name="inscriptions" inverse="true">
+            <key>
+                <column name="Code" length="254" not-null="true" />
+            </key>
+            <one-to-many class="modele.Inscription" />
+        </set>
+        <set name="chercheurs" inverse="true">
+            <key>
+                <column name="Code" length="254" />
+            </key>
+            <one-to-many class="modele.Chercheur" />
+        </set>
+    </class>
+</hibernate-mapping>

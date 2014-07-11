@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <link rel="stylesheet" type="text/css" href="style.css"/>
+            
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Connection</title>
+                
+ 
+                <style>
+
+                </style>      
+           
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit  styleClass="ui-north" position="north" size="60"  >
+                     <center>  
+                         <h:outputLabel  value="Platforme de gestion de Laboratoire /Unité de recherche" style="margin-top: 30px;   font:bold 20px Arial, Helvetica; " />  
+                    </center>
+                 <!--   <h:form id="form1">  
+                    <p:commandButton id="connectiont"     value="Connexion"  styleClass="ui-icon-excelcon"    />  
+                    <p:overlayPanel id="chartPanelgfr" for="connectiont"  showEffect="frade" style=" background: #ffffff">  
+         <h:form id="formm" styleClass="formulaire">  
+                        <p:growl id="growll" showDetail="true" sticky="true" life="2000"  />  
+        <h:panelGrid columns="1" id ="panell" style="margin-left: 30px;" >  
+            <h:outputLabel for="loginn" value="Login: *" />  
+            <p:inputText id="loginn" title="Entrez le login" required="true" label="Login" value="#{userController.login}">  
+                 
+            </p:inputText>  
+            <p:tooltip for="loginn" showEvent="focus" hideEvent="blur" style="background: #ffffff" showEffect="fade" hideEffect="fade" /> -->
+          <!--  <p:message for="login" />  -->
+   
+           <!-- <h:outputLabel for="passwordd" value="password: *" />  
+            <p:password id="passwordd"  title="Entrez le mot de passe" label="password" required="true" value="#{userController.password}" />  
+                
+               <p:tooltip for="passwordd" showEvent="focus" hideEvent="blur" style="background: #ffffff" showEffect="fade" hideEffect="fade"  /> 
+            
+          
+  
+        </h:panelGrid>  
+     
+                    <p:commandButton id="connectionn"     value="Connexion" update="panell,growll" styleClass="ui-icon-excelm" action="#{userController.dologin()}"   />  
+        </h:form>   
+    </p:overlayPanel> 
+                    </h:form>-->
+                   
+                </p:layoutUnit>
+
+                <p:layoutUnit styleClass="ui-south" position="south" size="40" >
+                   
+                </p:layoutUnit>
+
+              
+                <p:layoutUnit position="center"  styleClass="ui-center">
+                    
+                    <h:form styleClass="formulaire3" >  
+                       
+                        <p:commandButton id="loginLink" value="S'inscrire" icon="ui-icon-add" styleClass="ui-icon-excel2"  action="compte"   >   
+        
+        </p:commandButton>  
+  </h:form>       
+  <h:form id="formm" styleClass="formulaire">  
+                        <p:growl id="growll" showDetail="true" sticky="true" life="2000"  />  
+        <h:panelGrid columns="1" id ="panell" style="margin-left: 30px;" >  
+            <h:outputLabel for="loginn" value="Login: *" />  
+            <p:inputText id="loginn" title="Entrez le login" required="true" label="Login" value="#{userController.login}">  
+                 
+            </p:inputText>  
+            <p:tooltip for="loginn" showEvent="focus" hideEvent="blur" style="background: #ffffff" showEffect="fade" hideEffect="fade" /> 
+          <!--  <p:message for="login" />  -->
+   
+            <h:outputLabel for="passwordd" value="password: *" />  
+            <p:password id="passwordd"  title="Entrez le mot de passe" label="password" required="true" value="#{userController.password}" />  
+                
+               <p:tooltip for="passwordd" showEvent="focus" hideEvent="blur" style="background: #ffffff" showEffect="fade" hideEffect="fade"  /> 
+            
+          
+  
+        </h:panelGrid>  
+     
+                    <p:commandButton id="connectionn"     value="Connexion" update="panell,growll" styleClass="ui-icon-excelm" action="#{userController.dologin()}"   />  
+        </h:form>   
+              
+           
+                </p:layoutUnit>
+               
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+

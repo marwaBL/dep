@@ -1,0 +1,233 @@
+/* 
+    Document   : style
+    Created on : 15 mars 2014, 08:46:10
+    Author     : USER1
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body{
+   /* background: azure;*/
+    /*font-family:"times new roman", times, cursive;
+   font-size:200%;
+   font-weight: bold;*/
+   /* background: #cccccc; */
+   background: #666666;
+   font: 12px Arial; 
+   /* background-image: url("footer2.png" ) ;
+    background-size: cover;*/
+  /*  background-image: url("barre.png" ) ;
+    background-size: cover;*/
+    
+}
+
+ .ui-growl { left: 770px;top:180px; z-index: 999999 !important;}
+panel
+{
+    border-color:aqua; 
+}
+.formulaire2
+{  
+    
+  position:absolute;
+  top:25%;
+   left:35%;
+    padding-top: 20px;
+    padding-left: 20px;
+   
+   
+       font:bold 15px Arial, Helvetica, cursive;
+      
+}
+.formulaire3
+{  
+    
+ position:absolute;
+  top:65%;
+   left:35%;
+    padding-top: 20px;
+    padding-left: 20px;
+    border-bottom:1px solid #00ccff;
+     border-left:1px solid #00ccff;
+      border-right: 1px solid #00ccff;
+     width: 400px;
+     height: 50px;
+     color: #666666;
+  
+   
+       font:bold 15px Arial, Helvetica, cursive;
+      
+      
+}
+.dialog
+{  
+    
+  position:absolute;
+  top:25%;
+   left:65%;
+   
+}
+.formulaire
+{  
+    /*margin-top: 150px;*/
+   /* padding-top: 30px;
+   padding-left: 20px;
+
+     margin: 0 auto;*/
+  position:absolute;
+  top:10%;
+   left:23%;
+   /* padding-top: 20px;
+    padding-left: 20px;
+    border:0px solid #ffffff;*/
+  
+   /* background: #ffffff;*/
+     width: 720px;
+     height: 430px;
+     color: #666666;
+  
+   
+       font: 15px Arial, Helvetica, cursive;
+      
+}
+groupebouton
+{
+     display: block;
+    
+}
+.panel{
+     background:  url("btnbleu.png" )  !important;
+     background-size: cover;
+}
+ .ui-icon-excel {
+           /* background:  url("fond.jpg" )    !important;;*/
+            width:130px;
+            background:  url("btnbleu.png" )  !important;
+            color: #00ccff;
+            font:bold 13px Arial, Helvetica, cursive;
+            border: 1px solid #00ccff;
+            margin-top: 20px;
+    margin-bottom: 150px;
+    margin-left: 10px;
+    margin-right: 10px;
+   
+     }
+.button  {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width :150px;
+  left: 250px;
+  background:  url("btnvertvert.png" )  !important;
+   color: #666666 ;
+   border: 1px solid #00ccff;
+    }
+  .ui-center .ui-layout-unit-content  {
+   /* background-image: url("corps22.png" ) ;
+    background-size: cover;*/
+    background-image: url("fondbeige.png" ) ;
+    background-size: cover;
+    
+    }
+      .ui-center, .ui-center .ui-layout, .ui-center .ui-layout-bd, .ui-center .ui-layout-unit {
+    /* background-image: url("corps22.png" ) ;
+     background-size: cover;*/
+     background-image: url("fondbeige.png" ) ;
+    background-size: cover;
+      padding: 0;
+   
+    border: none;
+  
+    }
+
+   .ui-north .ui-layout-unit-content  {
+  /*  background-image: url("footer2.png" ) ;
+    background-size: cover;*/
+   /*background-image: url("barre.png" ) ;
+    background-size: cover;*/
+   background: #666666;
+    color: #ffffff;
+     font: 15px Arial, Helvetica, cursive;
+     overflow:visible !important;
+     
+    }
+     .ui-north, .ui-north .ui-layout, .ui-north .ui-layout-bd, .ui-north .ui-layout-unit {
+    /* background-image: url("footer2.png" ) ;
+     background-size: cover;*/
+    /* background-image: url("barre.png" ) ;
+    background-size: cover;*/
+    background: #666666;
+      padding-top: 15px;
+  z-index:20 !important;
+        overflow:visible !important;
+    
+     border: none;
+      
+    
+    }
+   .ui-south, .ui-south .ui-layout, .ui-south .ui-layout-bd, .ui-south .ui-layout-unit {
+     background-image: url("footer.png" ) ;
+     background-size: cover;
+      padding: 0;
+    
+     border: none;
+    }
+    .ui-south .ui-layout-unit-content  {
+    background-image: url("footer2.png" ) ;
+    background-size: cover;
+    
+    }
+    
+    
+    .ui-icon-excelcon {
+           /* background:  url("fond.jpg" )    !important;;*/
+            width:130px;
+            /*background:  url("footer2.png" )  !important;*/
+             background: url("btnvertvert.png" )  !important;
+            color: #ffffff;
+            font: 13px Arial, Helvetica, cursive;
+            border: 1px solid #ffffff;
+     
+  margin-top: -20px;
+    margin-left: 1200px;
+    /*margin-right: 10px;*/
+   
+     }
+     .formulaireconn
+{  
+    /*margin-top: 150px;*/
+   /* padding-top: 30px;
+   padding-left: 20px;
+
+     margin: 0 auto;*/
+  position:absolute;
+  top:25%;
+   left:35%;
+    padding-top: 20px;
+    padding-left: 20px;
+   /* border:1px solid #00ccff;*/
+     border-left:1px solid #00ccff;
+      border-right: 1px solid #00ccff;
+       border-top:1px solid #00ccff;
+     width: 350px;
+     height: 170px;
+     color: #666666;
+  
+   
+       font:15px Arial, Helvetica, cursive;
+      
+}
+
+.ui-icon-excelm {
+           /* background:  url("fond.jpg" )    !important;;*/
+          
+           width:190px;
+             background: url("btnvertvert.png" )  !important;
+            color: #666666;
+            font: 13px Arial, Helvetica, cursive;
+            border: 1px solid #00ccff;
+        margin-top: 10px;
+     margin-bottom:  10px;
+    margin-left: 35px;
+    /*margin-right: 50px;*/
+   
+     }

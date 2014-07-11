@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 avr. 2014 00:52:29 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="test.Etablissement" table="etablissement" catalog="pfa1">
+        <id name="codeEtab" type="int">
+            <column name="CodeEtab" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="universite" class="test.Universite" fetch="select">
+            <column name="CodeUniv" not-null="true" />
+        </many-to-one>
+        <property name="libEtab" type="string">
+            <column name="LibEtab" length="254" />
+        </property>
+        <set name="chercheursForEtaCodeEtab" inverse="true">
+            <key>
+                <column name="Eta_CodeEtab" />
+            </key>
+            <one-to-many class="test.Chercheur" />
+        </set>
+        <set name="chercheursForEtaCodeEtab2" inverse="true">
+            <key>
+                <column name="Eta_CodeEtab2" />
+            </key>
+            <one-to-many class="test.Chercheur" />
+        </set>
+        <set name="chercheursForCodeEtab" inverse="true">
+            <key>
+                <column name="CodeEtab" />
+            </key>
+            <one-to-many class="test.Chercheur" />
+        </set>
+        <set name="structurerecherches" inverse="true">
+            <key>
+                <column name="CodeEtab" not-null="true" />
+            </key>
+            <one-to-many class="test.Structurerecherche" />
+        </set>
+        <set name="obtenirs" inverse="true">
+            <key>
+                <column name="CodeEtab" not-null="true" />
+            </key>
+            <one-to-many class="test.Obtenir" />
+        </set>
+    </class>
+</hibernate-mapping>

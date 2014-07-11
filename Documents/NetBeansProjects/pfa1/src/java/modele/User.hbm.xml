@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 juin 2014 14:56:25 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="modele.User" table="user" catalog="pfa1">
+        <composite-id name="id" class="modele.UserId">
+            <key-property name="passwd" type="string">
+                <column name="Passwd" length="254" />
+            </key-property>
+            <key-property name="login" type="string">
+                <column name="Login" length="254" />
+            </key-property>
+        </composite-id>
+        <property name="type" type="string">
+            <column name="type" length="254" />
+        </property>
+        <property name="dateinscription" type="date">
+            <column name="dateinscription" length="10" />
+        </property>
+        <set name="chercheurs" inverse="true">
+            <key>
+                <column name="passwd" length="254" />
+                <column name="login" length="254" />
+            </key>
+            <one-to-many class="modele.Chercheur" />
+        </set>
+    </class>
+</hibernate-mapping>

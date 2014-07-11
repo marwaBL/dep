@@ -1,0 +1,100 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+  <f:view contentType="text/html">
+        <h:head>
+            <link rel="stylesheet" type="text/css" href="header.css"/>
+            <script></script>
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Profil</title>
+                
+ 
+                     
+           
+        </h:head>
+<h:body>
+    
+
+                  
+ <h:form  id="formmenu" >
+                    
+                  
+                   
+               
+                            
+     <p:menubar  styleClass="formmenu"  > 
+         <p:menuitem     icon="ui-icon-myCancel456" style="margin-left: 100px;" url="faces/profilChercheur.xhtml" />  
+             
+           
+           
+        
+  
+         <p:menuitem  value="Publications" url="faces/listePublication.xhtml" style="color:#99cc00; margin-left: 30px;  font:bold 16px Arial, Helvetica, cursive; " actionListener="#{listePublicationController.liste()}"  />  
+            
+       
+  
+                            <p:submenu label="Encadrement"  styleClass="affaires" style="margin-left: 10px;" >  
+            <p:menuitem value="Master"  url="faces/EncadrementMaster.xhtml" />  
+            <p:menuitem value="Thèse" url="faces/EncadrementThese.xhtml" />  
+               
+              
+        </p:submenu>  
+  
+                            <p:submenu  label="Services " styleClass="affaires"  style="margin-left: 10px;" >  
+              
+                                <p:menuitem value="Fiche chercheur" ajax="false" action="#{profilController.genererFicheChercheur()}" />  
+             
+            
+            
+        </p:submenu>  
+    
+       <f:facet name="options" >  
+           <p:graphicImage id="mail"  value="chat - Copie.png" style="position: absolute ;margin-left: -60px; margin-top:10px; "   rendered="#{profilController.disabled}" />  
+           <p:outputLabel value="#{profilController.nbdem}"  rendered="#{profilController.disabled}"  onmouseover="not.show()"  id="notif" styleClass="classname" style="position: absolute ;margin-left: -40px; margin-top:10px;"  />
+           <p:overlayPanel  id="chartPanelgfr" for="notif"  widgetVar="not"  showEffect="frade" style=" width: 200px; background: #ffffff; font:12px Arial;" >  
+               <ui:repeat  value="#{profilController.listdem}" var="pub" varStatus="loop" >  
+      <h:panelGrid  id="p11" columns="1" cellpadding="10"  > 
+          <p:outputLabel value=" #{pub.prenomCh} #{pub.nomCh}"  ></p:outputLabel>
+      </h:panelGrid>
+           
+      </ui:repeat>
+               <center>   <p:commandButton value="Valider" onclick="#{profilController.onHideDemande()}" action="validation" style="color: #99cc00"/>  </center>
+                         
+    </p:overlayPanel> 
+           <p:graphicImage id="photo"  width="45" height="45" styleClass="imageforme"  value="#{profilController.image}"   /> 
+      
+       
+        </f:facet> 
+        
+    </p:menubar>  
+     
+      <p:overlayPanel  id="panphoto" for="photo" widgetVar="not1"  showEffect="frade" >  
+            
+                            
+                       <!-- <p:menubar   >
+                            
+                            <p:submenu label=""  styleClass="affaires" style="margin-left: -20px">  
+              <p:menuitem value="Modifier profil"  action="#{profilController.redirectionModifierProfil()}"/>  
+            <p:menuitem value="Déconnexion" />  
+               
+              
+       </p:submenu> 
+                            
+                        </p:menubar>-->
+                        <h:panelGrid  id="p11" columns="1" cellpadding="7"  > 
+                            <p:commandLink value="Modifier profil"  action="modifierProfil" actionListener="#{profilController.redirectionModifierProfil()}" style=" color: #99cc00;"/>  
+                     
+                            <p:commandLink value="Déconnexion" style=" color: #99cc00;" action="connexion" actionListener="#{userController.logout()}" /> 
+                        </h:panelGrid>
+                       
+      </p:overlayPanel>
+  </h:form>
+                    
+    
+                   
+ 
+</h:body>
+        </f:view>
+</html>

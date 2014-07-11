@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <link rel="stylesheet" type="text/css" href="accueil.css"/>
+            <script></script>
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Accueil</title>
+                
+ 
+                     
+           
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit  styleClass="ui-north" position="north" size="60"  >
+                    <center>  
+                        <h:outputLabel value="Recherche"  />  
+                    <h:outputLabel  value="Scientifique" style="color: #00ccff" />  
+                    </center>
+                </p:layoutUnit>
+
+                <p:layoutUnit styleClass="ui-south" position="south" size="40" >
+                    Footer
+                </p:layoutUnit>
+
+              
+                <p:layoutUnit position="center"  styleClass="ui-center">
+                   
+       <h:form id="form" styleClass="formulaire">  
+        <p:growl id="growl" showDetail="false"  sticky="true" life="2000" widgetVar="dlg"  />  
+        <h:panelGrid columns="4" id ="panel"   cellspacing="23" >  
+            <h:outputLabel for="combuniv" value="Université:*" />  
+            <p:selectOneMenu id="combuniv"  requiredMessage="Vous devez sélectionner une valeur pour Université" required="true" style="width: 150px" value="#{structureRechercheController.univlib}">  
+                <f:selectItem itemLabel="Université" itemValue="" />  
+                <f:selectItems value="#{structureRechercheController.universites}" />  
+              <p:ajax update="combetab"  
+                      listener="#{structureRechercheController.findEtablissementByCodeUniv()}" /> 
+            </p:selectOneMenu>  
+   <h:outputLabel for="combetab" value="Etablissement:*" />  
+   <p:selectOneMenu id="combetab" required="true" requiredMessage="Vous devez sélectionner une valeur pour Etablissement" style="width: 150px" value="#{structureRechercheController.etablib}" >  
+                <f:selectItem itemLabel="Etablissement" itemValue="" />  
+                <f:selectItems value="#{structureRechercheController.etablissements}" />  
+            </p:selectOneMenu>             
+        </h:panelGrid>
+        <h:panelGrid columns="2" styleClass="panel2"  > 
+            <h:outputLabel for="denomination" value="Dénomination:*" />  
+            <p:inputText id="denomination" required="true"  value="#{structureRechercheController.denomination}"
+   requiredMessage="Vous devez indiquer une valeur pour dénomination" label="denomination" size="60"   />
+            
+      </h:panelGrid>
+        <h:panelGrid columns="4"   cellpadding="15" >  
+            <h:outputLabel for="combtype" value="Type:*" />  
+            <p:selectOneMenu id="combtype" required="true" value="#{structureRechercheController.type}"
+             requiredMessage="Vous devez sélectionner une valeur pour type" style="margin-left: 40px;width:150px" >  
+                 <f:selectItem itemLabel="" itemValue="" />  
+
+                 <f:selectItem itemLabel="Unité  " itemValue="Unité" />  
+                  <f:selectItem itemLabel="Labo  " itemValue="Labo" />  
+              
+            </p:selectOneMenu>  
+   <h:outputLabel for="code" value="Code:*" style="margin-left: 10px"/>  
+                <p:inputText id="code" required="true" 
+                             requiredMessage="Vous devez indiquer une valeur pour code" label="code" value="#{structureRechercheController.code}"   />
+                     
+        </h:panelGrid>
+        <h:panelGrid columns="2" cellspacing="15"  > 
+               <h:outputLabel for="combdiscipline" value="Discipline:*" />  
+               <p:selectOneMenu id="combdiscipline"  style="width: 150px;margin-left: 20px" value="#{structureRechercheController.discipline}" >  
+                <f:selectItem itemLabel="Discipline"  itemValue="" />  
+             <f:selectItem itemLabel="Lettres"  itemValue="Lettres" />  
+             <f:selectItem itemLabel="Arts et cultures"  itemValue="Arts et cultures" />  
+             <f:selectItem itemLabel="Sciences juridiques et politiques"  itemValue="Sciences juridiques et politiques" />  
+             <f:selectItem itemLabel="Sciences de l’homme et de la société"  itemValue="Sciences de l’homme et de la société" />  
+             <f:selectItem itemLabel="Sciences économiques et de gestion"  itemValue="Sciences économiques et de gestion" />  
+            <f:selectItem itemLabel="Sciences médicales"  itemValue="Sciences médicales" />  
+            <f:selectItem itemLabel="Sciences biologiques"  itemValue="Sciences biologiques" />  
+            <f:selectItem itemLabel="Sciences de la Terre"  itemValue="Sciences de la Terre" />  
+            <f:selectItem itemLabel="Sciences de l’environnement"  itemValue="Sciences de l’environnement" />  
+            <f:selectItem itemLabel="Sciences de la mer"  itemValue="Sciences de la mer" />  
+            <f:selectItem itemLabel="Sciences de l’eau"  itemValue="Sciences de l’eau" />  
+            <f:selectItem itemLabel="Sciences des matériaux"  itemValue="Sciences des matériaux" />  
+            <f:selectItem itemLabel="Sciences et Techniques de l’Ingénieur"  itemValue="Sciences et Techniques de l’Ingénieur" />  
+            <f:selectItem itemLabel="Sciences agronomiques"  itemValue="Sciences agronomiques" />  
+          <f:selectItem itemLabel="Mathématiques"  itemValue="Biotechnologies" />  
+           <f:selectItem itemLabel="Mathématiques"  itemValue="Mathématiques" />  
+           <f:selectItem itemLabel="Chimie"  itemValue="Chimie" />  
+          <f:selectItem itemLabel="Physique"  itemValue="Physique" />  
+<f:selectItem itemLabel="Sciences et Technologies de l’Information et de la Communication"  itemValue="Sciences et Technologies de l’Information et de la Communication" />
+
+               </p:selectOneMenu>
+               <h:outputLabel for="site" value="site:" />  
+               <p:inputText  id="site" label="site"  size="60" style="margin-left: 20px" value="#{structureRechercheController.site}" />
+        </h:panelGrid>
+         <h:panelGrid columns="3" cellspacing="12"  > 
+               <h:outputLabel for="responsable" value="Responsable:*" />  
+               <p:inputText  id="responsable" label="responsable" value="#{structureRechercheController.responsable}" required="true" requiredMessage="Vous devez indiquer le nom et le prenom du responsable" size="60"  />
+               <p:watermark for="responsable" value="Nom premom" /> 
+         </h:panelGrid>
+         <h:panelGrid columns="2" cellspacing="15"  > 
+               <h:outputLabel for="email" value="Email:*" />  
+               <p:inputText  id="email" label="email"   size="60" style="margin-left: 50px" value="#{structureRechercheController.email}" />
+                  
+                     
+              
+          </h:panelGrid>
+        <p:commandButton id="loginLink" value="Ajouter"  update="panel,growl" action="#{structureRechercheController.ajoutStructure()}" styleClass="ui-icon-excel"     >   
+        
+        </p:commandButton> 
+       </h:form>
+             <script type="text/javascript">  
+    function handleLoginRequest(xhr, status, args) {  
+        if(args.validationFailed || !args.loggedIn) {  
+            dlg.jq.effect("shake", { times:5 }, 100);  
+        }   
+        else {  
+            dlg.hide();  
+            $('#loginLink').fadeOut();  
+        }  
+    }  
+   
+</script>                     
+                </p:layoutUnit>
+               
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+

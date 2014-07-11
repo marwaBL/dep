@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <link rel="stylesheet" type="text/css" href="inscription.css"/>
+            <script></script>
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Inscription</title>
+                
+ 
+                     
+           
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit  styleClass="ui-north" position="north" size="60"  >
+                    <center>  
+                        <h:outputLabel value="Recherche"  />  
+                    <h:outputLabel  value="Scientifique" style="color: #00ccff" />  
+                    </center>
+                </p:layoutUnit>
+
+                
+
+              
+                <p:layoutUnit position="center"  styleClass="ui-center">
+                   
+       <h:form id="form" styleClass="formulaire">  
+             
+        <p:growl id="growl" showDetail="false"  sticky="true" life="2000" widgetVar="dlg"  />  
+        <h:panelGrid columns="3" id ="panel"   cellspacing="15" >  
+            <h:outputLabel for="nomprenom" value="Nom et prenom:*" />  
+            <p:inputText id="nomprenom" required="true" requiredMessage="Vous devez indiquer le nom et prenom " 
+                         label="nomprenom"  value="#{inscriptionStructureController.nomprenom}" style="margin-left: 18px"  />
+             <p:watermark for="nomprenom" value="Nom premom" />  
+             </h:panelGrid >
+  
+        <h:panelGrid columns="4"  cellspacing="15"  > 
+            <h:outputLabel for="datenais" value="Date de Naissance:" />  
+            <p:calendar effect="slide" id="datenais" required="true"  requiredMessage="Vous devez indiquer la date de naissance" value="#{inscriptionStructureController.datenais}" /> 
+            <h:outputLabel for="lieunais" value="Lieu de Naissance:" /> 
+            <p:inputText id="lieunais" required="true"  value="#{inscriptionStructureController.lieudenais}"
+   requiredMessage="Vous devez indiquer le lieu de naissance " label="lieunais"    />
+            
+      </h:panelGrid>
+             <h:panelGrid columns="2" cellspacing="15" > 
+        <h:outputText value="Sexe: " />  
+        <p:selectOneRadio id="sexe"  style="margin-left: 90px"  requiredMessage="Vous devez indiquer le sexe "
+                          required="true"      value="#{inscriptionStructureController.sexe}" >  
+            <f:selectItem itemLabel="Homme" itemValue="Homme" />  
+            <f:selectItem itemLabel="Femme" itemValue="Femme" />  
+            <p:ajax update="gridContainer"  event="change"
+                      />
+        </p:selectOneRadio> 
+         </h:panelGrid>
+<p:outputPanel id="gridContainer" layout="block"  >
+             <h:panelGrid columns="2" id="panelfemme" cellspacing="15"  rendered="#{inscriptionStructureController.displaypanel()}" > 
+        <h:outputText value="Nom jeune fille: " />  
+        <p:inputText id="nomjeunefille"  label="nomjeunefille"  style="margin-left: 25px" value="#{inscriptionStructureController.nomjeunefille}" />
+          
+       
+         </h:panelGrid>
+     </p:outputPanel>
+         <h:panelGrid columns="4"  cellspacing="15"  > 
+            <h:outputLabel for="cin" value="CIN:" />  
+            <p:inputMask id="cin"  label="cin"  style="margin-left: 105px" value="#{inscriptionStructureController.cin}" mask="99999999"/>
+               
+            
+            <h:outputLabel for="passport" value="N°passport:" /> 
+            <p:inputText id="passport"  label="N°passport" style="margin-left: 50px" value="#{inscriptionStructureController.numpasport}"  />
+            
+      </h:panelGrid>    
+               <h:panelGrid columns="4"  cellspacing="15"  > 
+            <h:outputLabel for="tel" value="Telephone:" />  
+            <p:inputText id="tel"  label="tel" required="true" style="margin-left: 55px" value="#{inscriptionStructureController.tel}" />
+               
+            
+            <h:outputLabel for="email" value="Email:" /> 
+            <p:inputText id="email" required="true" label="email"  style="margin-left: 90px" size="40" value="#{inscriptionStructureController.email}"  />
+            
+      </h:panelGrid>   
+              <h:panelGrid columns="6"  cellspacing="15"  > 
+            <h:outputLabel for="fonction" value="Fonction:" />  
+           
+            <p:selectOneMenu id="fonction"   style="width: 150px;margin-left: 68px" value="#{inscriptionStructureController.fonction }" >  
+                 <f:selectItem itemLabel="" itemValue="" />  
+                 <f:selectItem itemLabel="Chef de département" itemValue="Chef de département" /> 
+                 <f:selectItem itemLabel="Doyen" itemValue="Doyen" /> 
+ <p:ajax update="fonction"  
+            event="change" /> 
+           
+              
+            </p:selectOneMenu>  
+            
+              <h:outputLabel for="combuniv" value="Université:" style="margin-left: 15px"/>  
+              <p:selectOneMenu id="combuniv"   style="width: 150px;margin-left: 55px" value="#{inscriptionStructureController.univlib}">  
+                <f:selectItem itemLabel="Université" itemValue="" />  
+                <f:selectItems value="#{inscriptionStructureController.universites}" />  
+                <p:ajax update="combetab"  
+                      listener="#{inscriptionStructureController.findEtablissementByCodeUniv()}" /> 
+            </p:selectOneMenu>  
+   <h:outputLabel for="combetab" value="Etablissement:" style="margin-left: 20px" />  
+   <p:selectOneMenu id="combetab" style="width: 150px" value="#{inscriptionStructureController.etablib}" >  
+                <f:selectItem itemLabel="Etablissement" itemValue="" />  
+                <f:selectItems value="#{inscriptionStructureController.etablissements1}" />  
+            </p:selectOneMenu> 
+            
+      </h:panelGrid>  
+              <h:panelGrid columns="6"  cellspacing="15"  > 
+            <h:outputLabel for="grade" value="Grade:" />  
+           
+            <p:selectOneMenu id="grade"  style="width: 150px;margin-left: 85px" value="#{inscriptionStructureController.grade}" >  
+                 <f:selectItem itemLabel="" itemValue="" />  
+                 <f:selectItem itemLabel="Assistant" itemValue="Assistant" /> 
+                 <f:selectItem itemLabel="Maitre Assistant" itemValue="Maitre assistant" /> 
+                 <f:selectItem itemLabel="Maitre de conférence" itemValue="Maitre de conférence" /> 
+                 <f:selectItem itemLabel="Professeur" itemValue="Professeur" /> 
+<p:ajax update="grade"  
+            event="change" /> 
+                 
+              
+            </p:selectOneMenu>  
+            
+              <h:outputLabel for="combuniv1" value="Université:" style="margin-left: 15px"/>  
+              <p:selectOneMenu id="combuniv1"   style="width: 150px;margin-left: 55px" value="#{inscriptionStructureController.univlibg}">  
+                <f:selectItem itemLabel="Université" itemValue="" />  
+                <f:selectItems value="#{inscriptionStructureController.universites}" />  
+              <p:ajax update="combetab1"  
+                      listener="#{inscriptionStructureController.findEtablissementByCodeUniv()}" /> 
+            </p:selectOneMenu>  
+   <h:outputLabel for="combetab1" value="Etablissement:" style="margin-left: 20px" />  
+   <p:selectOneMenu id="combetab1"  style="width: 150px" value="#{inscriptionStructureController.etablibg}" >  
+                <f:selectItem itemLabel="Etablissement" itemValue="" />  
+                <f:selectItems value="#{inscriptionStructureController.etablissements2}" />  
+            </p:selectOneMenu> 
+            
+      </h:panelGrid> 
+               <h:panelGrid columns="2"  cellspacing="15"  > 
+            <h:outputLabel for="type" value="Type:" />  
+           
+            <p:selectOneMenu id="type"  style="width: 150px;margin-left: 95px"  requiredMessage="Vous devez indiquer le type " required="true" value="#{inscriptionStructureController.type}"  >  
+                 <f:selectItem itemLabel="" itemValue="" />  
+                 <f:selectItem itemLabel="Etudiant en Master" itemValue="Etudiant en Master" /> 
+                 <f:selectItem itemLabel="Doctorant" itemValue="Doctorant" /> 
+                 <f:selectItem itemLabel="Docteur" itemValue="Docteur" /> 
+                 <f:selectItem itemLabel="Docteur Habilité" itemValue="Docteur Habilité" /> 
+
+                 <p:ajax update="grid2"  event="change"
+                      />
+              
+            </p:selectOneMenu> 
+            </h:panelGrid>
+             <h:panelGrid columns="4"   cellpadding="15" >  
+            <h:outputLabel for="structure" value="Structure:*" />  
+            <p:selectOneMenu id="structure" required="true"  value="#{inscriptionStructureController.labounite}"
+             requiredMessage="Vous devez sélectionner une valeur pour type" style="margin-left: 40px;width:150px" >  
+                 <f:selectItem itemLabel="" itemValue="" />  
+
+                 <f:selectItem itemLabel="Unité  " itemValue="Unité" />  
+                  <f:selectItem itemLabel="Labo  " itemValue="Labo" />  
+              <f:ajax listener="#{inscriptionStructureController.displaypanelstructure()}"  event="change" />
+            </p:selectOneMenu>
+            
+             
+              <h:outputLabel for="denomination" value="Dénomination:*" />  
+              <p:inputText id="denomination" value="#{inscriptionStructureController.denomination}" label="denomination" required="true"  style="margin-left: 15px"  >
+            <p:ajax update="grid"  event="keyup"
+                      />
+              </p:inputText>
+            
+      </h:panelGrid> 
+              
+             <p:outputPanel id="grid" layout="block"  >
+                 <h:panelGrid columns="6"  cellspacing="15"  id="panelgenerer" rendered="#{inscriptionStructureController.displaypanelstructure()}" > 
+              <h:outputLabel  value="Responsable:"  />  
+              <h:outputLabel  value="#{inscriptionStructureController.responsable}"  />  
+  
+       
+              <h:outputLabel  value="Université:" style="margin-left: 80px"/>  
+          
+              <h:outputLabel  value="#{inscriptionStructureController.libuniv}"  />  
+   <h:outputLabel  value="Etablissement:" style="margin-left: 98px" />  
+ 
+   <h:outputLabel  value="#{inscriptionStructureController.libetab}"   />  
+      </h:panelGrid> 
+             </p:outputPanel>
+                <p:outputPanel id="grid2" layout="block"  >
+                    <h:panelGrid columns="5"   cellpadding="15"  rendered="#{inscriptionStructureController.displaypanelType()}">  
+            <h:outputLabel for="sujet" value="Sujet:*" />  
+            <p:inputText id="sujet"  required="true" label="sujet"  style="margin-left: 65px" size="67" />
+
+            
+             
+              <h:outputLabel for="avancement" value="Avancement:*" />  
+              <p:inputMask id="avancement"  label="avancement" value="#{inscriptionStructureController.avancement}"
+                           required="true" requiredMessage="Vous devez indiquer l'avancement"   size="5" mask="99" />
+           <p:watermark for="avancement" value="%" /> 
+      
+            
+      </h:panelGrid> 
+              <h:panelGrid columns="7"  cellspacing="15" rendered="#{inscriptionStructureController.displaypanelType()}"  > 
+              <h:outputLabel for="annee" value="Inscription:*"  />  
+              <p:inputMask  id="annee"  label="annee"  value="#{inscriptionStructureController.anneeinscri}" size="10" style="margin-left: 45px"  required="true" mask="9999" />
+        <p:watermark for="annee" value="annee" /> 
+              <h:outputLabel for="combuniv3" value="Université:*" style="margin-left: 55px"/>  
+              <p:selectOneMenu id="combuniv3"  required="true" requiredMessage="Vous devez selctionner l'universite " style="width: 150px;margin-left: 55px" value="#{inscriptionStructureController.univlibi}">  
+                <f:selectItem itemLabel="Université" itemValue="" />  
+                <f:selectItems value="#{inscriptionStructureController.universites}" />  
+              <p:ajax update="combetab3"  
+                      listener="#{inscriptionStructureController.findEtablissementByCodeUniv()}" /> 
+            </p:selectOneMenu>  
+   <h:outputLabel for="combetab3" value="Etablissement:*" style="margin-left: 15px" />  
+   <p:selectOneMenu id="combetab3"  required="true" requiredMessage="Vous devez selectionner l'etablissement" style="width: 150px;" value="#{inscriptionStructureController.etablibi}" >  
+                <f:selectItem itemLabel="Etablissement" itemValue="" />  
+                <f:selectItems value="#{inscriptionStructureController.etablissements3}" />  
+            </p:selectOneMenu> 
+            
+      </h:panelGrid> 
+              <h:panelGrid columns="3"   cellpadding="15"  rendered="#{inscriptionStructureController.displaypanelType()}">  
+            <h:outputLabel for="directeur" value="Directeur:*" />  
+            <p:inputText id="directeur" required="true" label="directeur" value="#{inscriptionStructureController.nomprenomdirecteurthese}" style="margin-left: 35px"  />
+ 
+               <p:watermark for="directeur" value="Nom premom" /> 
+              </h:panelGrid> 
+                </p:outputPanel>
+           
+                  
+             <p:commandButton id="loginLink" value="S'inscrire"  
+                              update="form"              type="submit"   action="#{inscriptionStructureController.inscription()}"    styleClass="ui-icon-excel"   >   
+         </p:commandButton> 
+              
+  
+       
+                
+       </h:form>
+             <script type="text/javascript">  
+    function handleLoginRequest(xhr, status, args) {  
+        if(args.validationFailed || !args.loggedIn) {  
+            dlg.jq.effect("shake", { times:5 }, 100);  
+        }   
+        else {  
+            dlg.hide();  
+            $('#loginLink').fadeOut();  
+        }  
+    }  
+   
+</script>                     
+                </p:layoutUnit>
+               
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+

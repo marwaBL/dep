@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <link rel="stylesheet" type="text/css" href="style.css"/>
+            
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Connection</title>
+                
+ 
+                <style>
+
+                </style>      
+           
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit  styleClass="ui-north" position="north" size="60"  >
+                    <center>
+                         <h:outputLabel  value="Platforme de gestion de Laboratoire /Unité de recherche" style="   font: 20px Arial, Helvetica; color:#99cc00 " />  
+                    </center>
+                    
+                </p:layoutUnit>
+
+                <p:layoutUnit styleClass="ui-south" position="south" size="30" >
+                    <center style=" color:#99cc00 ;" >  Copyright © 2014</center>
+                </p:layoutUnit>
+
+              
+                <p:layoutUnit position="center"  styleClass="ui-center">
+                    
+                <h:form styleClass="formulairelink" >  
+                        <p:panel> 
+                            <p:commandLink id="loginLink" value="Créer un compte" styleClass="ui-icon-excellink"   action="#{userController.compte()}" style=" color: #666666" />    
+        
+         </p:panel> 
+  </h:form>     
+  <h:form id="formmg" styleClass="formulaireconn"> 
+      <p:panel styleClass="panntest">
+                        <p:growl id="growll" showDetail="true" sticky="true" life="2000"  />  
+        <h:panelGrid columns="1" id ="panell" style="margin-left: 60px;" >  
+            <h:outputLabel for="loginnc" value="Identifiant: *" />  
+            <p:inputText id="loginnc" title="Entrez le login" required="true" label="Login" value="#{userController.login}">  
+                 
+            </p:inputText>  
+            <!--<p:tooltip for="loginnc" showEvent="focus" hideEvent="blur" style="background: #ffffff" showEffect="fade" hideEffect="fade" /> 
+        -->  <!--  <p:message for="login" />  -->
+   
+            <h:outputLabel for="passworddc" value="Mot de passe: *" />  
+            <p:password id="passworddc"  title="Entrez le mot de passe" label="password" required="true" value="#{userController.password}" />  
+                
+              <!-- <p:tooltip for="passworddc" showEvent="focus" hideEvent="blur" style="background: #ffffff" showEffect="fade" hideEffect="fade"  /> 
+            -->
+          
+  
+        </h:panelGrid>  
+     
+                        <p:commandButton id="connectionnc"     value="Connexion" update="panell,growll" styleClass="ui-icon-excelmconn" action="#{userController.dologin()}" style=" font:bold 15px Arial;  color: #ffffff;  "  />  
+                    
+      </p:panel>     
+  </h:form>   
+              
+           
+                </p:layoutUnit>
+                
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+

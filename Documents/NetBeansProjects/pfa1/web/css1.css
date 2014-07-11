@@ -1,0 +1,29 @@
+#page{
+	width: 800px;
+	margin: 0 auto;
+}
+
+#header{
+	width: 100%;
+	height:100px;
+	
+         background-image: url("header.png" ) ;
+    background-size: cover;
+}
+
+#content{
+	width: 100%;
+	height:200px;
+	
+	
+	
+        background-image: url("corps2.png" ) ;
+    background-size: cover;
+}
+
+#footer{
+	width: 100%;
+	height:100px;
+	 background-image: url("header.png" ) ;
+    background-size: cover;
+}

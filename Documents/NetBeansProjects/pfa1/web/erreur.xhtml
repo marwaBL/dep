@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <link rel="stylesheet" type="text/css" href="style.css"/>
+            
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Connection</title>
+                
+ 
+                <style>
+
+                </style>      
+           
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit  styleClass="ui-north" position="north" size="60"  >
+                    <center>
+                         <h:outputLabel  value="Platforme de gestion de Laboratoire /Unité de recherche" style="   font: 20px Arial, Helvetica; color:#99cc00 " />  
+                    </center>
+                    
+                </p:layoutUnit>
+
+                <p:layoutUnit styleClass="ui-south" position="south" size="30" >
+                    <center style=" color:#99cc00 ;" >  Copyright © 2014</center>
+                </p:layoutUnit>
+
+              
+                <p:layoutUnit position="center"  styleClass="ui-center">
+                    
+                    <h:form styleClass="formulaire" style="margin-left: 150px;" >  
+                       
+                        <p:graphicImage id="photo"  width="120" height="120" styleClass="imageforme"  value="warning.png"   /> 
+                        <br/>   <p:commandLink value="Connexion"   action="connexion.xhtml"  style=" color: #b23e35; margin-left: 20px;"/>  
+                       
+  </h:form>   
+              
+           
+                </p:layoutUnit>
+                
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+

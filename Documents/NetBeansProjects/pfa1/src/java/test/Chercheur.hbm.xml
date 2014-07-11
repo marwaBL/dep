@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 avr. 2014 00:52:29 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="test.Chercheur" table="chercheur" catalog="pfa1">
+        <id name="idCh" type="java.lang.Integer">
+            <column name="IdCh" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="etablissementByEtaCodeEtab2" class="test.Etablissement" fetch="select">
+            <column name="Eta_CodeEtab2" />
+        </many-to-one>
+        <many-to-one name="structurerecherche" class="test.Structurerecherche" fetch="select">
+            <column name="Code" length="254" />
+        </many-to-one>
+        <many-to-one name="etablissementByEtaCodeEtab" class="test.Etablissement" fetch="select">
+            <column name="Eta_CodeEtab" />
+        </many-to-one>
+        <many-to-one name="chercheur" class="test.Chercheur" fetch="select">
+            <column name="Che_IdCh" />
+        </many-to-one>
+        <many-to-one name="user" class="test.User" fetch="select">
+            <column name="passwd" length="254" />
+            <column name="login" length="254" />
+        </many-to-one>
+        <many-to-one name="etablissementByCodeEtab" class="test.Etablissement" fetch="select">
+            <column name="CodeEtab" />
+        </many-to-one>
+        <property name="nomCh" type="string">
+            <column name="NomCh" length="254" />
+        </property>
+        <property name="prenomCh" type="string">
+            <column name="PrenomCh" length="254" />
+        </property>
+        <property name="dateNaisCh" type="timestamp">
+            <column name="DateNaisCh" length="19" />
+        </property>
+        <property name="lieuNaisCh" type="string">
+            <column name="LieuNaisCh" length="254" />
+        </property>
+        <property name="sexeCh" type="string">
+            <column name="SexeCh" length="254" />
+        </property>
+        <property name="nomJfch" type="string">
+            <column name="NomJFCh" length="254" />
+        </property>
+        <property name="cinCh" type="string">
+            <column name="CinCh" length="254" />
+        </property>
+        <property name="passCh" type="string">
+            <column name="PassCh" length="254" />
+        </property>
+        <property name="telCh" type="string">
+            <column name="TelCh" length="254" />
+        </property>
+        <property name="emailCh" type="string">
+            <column name="EmailCh" length="254" />
+        </property>
+        <property name="gradeCh" type="string">
+            <column name="GradeCh" length="254" />
+        </property>
+        <property name="typeCh" type="string">
+            <column name="TypeCh" length="254" />
+        </property>
+        <property name="sujetRechCh" type="string">
+            <column name="SujetRechCh" length="254" />
+        </property>
+        <property name="avancement" type="java.lang.Integer">
+            <column name="Avancement" />
+        </property>
+        <property name="fonctionCh" type="string">
+            <column name="FonctionCh" length="254" />
+        </property>
+        <property name="annee" type="java.lang.Integer">
+            <column name="Annee" />
+        </property>
+        <property name="etat" type="string">
+            <column name="Etat" length="254" />
+        </property>
+        <property name="photo" type="string">
+            <column name="photo" length="254" />
+        </property>
+        <set name="inscriptions" inverse="true">
+            <key>
+                <column name="IdCh" not-null="true" />
+            </key>
+            <one-to-many class="test.Inscription" />
+        </set>
+        <set name="auteurs" inverse="true">
+            <key>
+                <column name="IdCh" />
+            </key>
+            <one-to-many class="test.Auteur" />
+        </set>
+        <set name="structurerecherches" inverse="true">
+            <key>
+                <column name="IdCh" not-null="true" />
+            </key>
+            <one-to-many class="test.Structurerecherche" />
+        </set>
+        <set name="chercheurs" inverse="true">
+            <key>
+                <column name="Che_IdCh" />
+            </key>
+            <one-to-many class="test.Chercheur" />
+        </set>
+        <set name="obtenirs" inverse="true">
+            <key>
+                <column name="IdCh" not-null="true" />
+            </key>
+            <one-to-many class="test.Obtenir" />
+        </set>
+    </class>
+</hibernate-mapping>

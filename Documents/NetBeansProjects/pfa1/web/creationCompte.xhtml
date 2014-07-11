@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <link rel="stylesheet" type="text/css" href="creationCompte.css"/>
+            
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Creation compte</title>
+                
+ 
+                <style>
+
+                </style>      
+           
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit  styleClass="ui-north" position="north" size="60"  >
+                    <center>
+                         <h:outputLabel  value="Platforme de gestion de Laboratoire /Unité de recherche" style="   font: 20px Arial, Helvetica; color:#99cc00 " />  
+                    </center>
+              <h:form id="form1">  
+                  <p:commandButton id="connectiont"     value="Connexion"  styleClass="ui-icon-excelcon" style="color: #ffffff"   />  
+                    <p:overlayPanel id="chartPanelgfr" for="connectiont"  showEffect="frade" style=" background: #ffffff">  
+         <h:form id="formm" styleClass="formulaire">  
+                        <p:growl id="growll" showDetail="true" sticky="true" life="2000"  />  
+        <h:panelGrid columns="1" id ="panell" style="margin-left: 30px;" >  
+            <h:outputLabel for="loginn" value="Login: *" />  
+            <p:inputText id="loginn" title="Entrez le login" required="true" label="Login" value="#{userController.login}">  
+                 
+            </p:inputText>  
+            <p:tooltip for="loginn" showEvent="focus" hideEvent="blur" style="background: #ffffff" showEffect="fade" hideEffect="fade" /> 
+          <!--  <p:message for="login" />  -->
+   
+          <h:outputLabel for="passwordd" value="password: *" />  
+            <p:password id="passwordd"  title="Entrez le mot de passe" label="password" required="true" value="#{userController.password}" />  
+                
+               <p:tooltip for="passwordd" showEvent="focus" hideEvent="blur" style="background: #ffffff" showEffect="fade" hideEffect="fade"  /> 
+            
+          
+  
+        </h:panelGrid>  
+     
+                        <p:commandButton id="connectionn"     value="Connexion" update="panell,growll" styleClass="ui-icon-excelm" action="#{userController.dologin()}" style="color: #ffffff"  />  
+        </h:form>   
+    </p:overlayPanel> 
+                    </h:form>
+                </p:layoutUnit>
+
+               
+
+              
+                <p:layoutUnit position="center"  styleClass="ui-center">
+                   <h:form id="form" styleClass="formulaire" >
+                       <p:panel>
+      <p:growl id="growl2" showDetail="true" sticky="true"  life="2000" />  
+        <h:panelGrid columns="2" cellpadding="10" id ="p">  
+            <h:outputLabel for="identifiant" value="Identifiant:*" />  
+            <p:inputText  style="margin-left: 55px"  size="15"
+                id="identifiant" required="true"  title="Entrez l'identifiant" label="identifiant" value="#{userController.identifiant}" />  
+             
+            
+            <h:outputLabel for="passwrd" value="Mot de passe:*" />  
+            <p:password  feedback="true" style="margin-left: 55px ;" size="15" promptLabel="Entrez Votre mot de passe"  id="passwrd"  label="passwrd"  value="#{userController.passwrd}" > 
+         <p:ajax  update="passwrd" />  
+            </p:password>
+        </h:panelGrid> 
+            <h:panelGrid columns="3" cellpadding="5" id ="p2"> 
+            <h:outputLabel for="passwrd2" value="Confirmer Mot de passe:*" />  
+            <p:password   
+                id="passwrd2"  label="passwrd2" value="#{userController.passwrd2}" size="15" > 
+                <p:ajax event="blur" update="growl2"  listener="#{userController.confirmerMP()}"/>
+            </p:password>
+            </h:panelGrid>
+     
+             <h:panelGrid columns="5" cellpadding="10" id ="p3"> 
+                  <h:outputLabel  value="Nom et Prénom:*" />  
+            <p:inputText  size="15" 
+                id="nom"  label="NomPrénom" required="true" style="margin-left: 35px" value="#{userController.nom}"  />
+             <p:watermark for="nom" value="Nom " />
+            <p:inputText  size="15" 
+                id="prenom"  label="Nom Prénom" required="true" value="#{userController.prenom}" style="margin-left: -30px"  />
+             <p:watermark for="prenom" value="Prénom" />
+                 
+                 
+            </h:panelGrid>
+       <h:panelGrid columns="4" cellpadding="10" id ="p1"> 
+                 <h:outputLabel for="cin" value="CIN:*"  />  
+                 <p:inputMask id="cin" size="15" label="cin"  value="#{userController.cin}" mask="99999999" style="margin-left: 115px" required="true"/>
+               
+            <h:outputLabel for="email" value="Email:*" />  
+            <p:inputText  
+                id="email"  label="email" required="true" size="25" value="#{userController.email}" />
+        <p:tooltip for="email" value="Vous pouuvez utiliser de lettres,des chiffreset des points" showEvent="focus" hideEvent="blur" showEffect="fade" hideEffect="fade"  /> 
+                 
+       </h:panelGrid>
+       <h:panelGrid columns="2" cellpadding="10" id ="p4">
+                  
+       
+           <p:selectOneRadio id="sexe"  layout="pageDirection" value="#{userController.structure}"
+                       requiredMessage="Vous devez indiquer la structure de recherche "
+                          required="true"      >  
+            <f:selectItem itemLabel="Unité" itemValue="Unité"  />  
+            <f:selectItem itemLabel="Labo" itemValue="Labo"  />  
+             <p:ajax update="denomination"  
+                     listener="#{userController.findStructureByType()}" /> 
+           
+        </p:selectOneRadio>
+                 
+                  <p:selectOneMenu id="denomination" required="true" requiredMessage="Vous devez sélectionner une valeur pour Etablissement" style="margin-left: 90px;width: 150px" value="#{userController.denomination}" >  
+                <f:selectItem itemLabel="Denomination" itemValue="Denomination" />  
+                <f:selectItems value="#{userController.listdenomination}" />  
+            </p:selectOneMenu>  
+             </h:panelGrid>
+            
+     
+            
+      
+            
+                <p:commandButton id="loginButton" value="Créer" update="growl2,form"   
+                       
+                                 process="@form"  styleClass="button" style="color: #ffffff"
+    oncomplete="handleLoginRequest(xhr, status, args)" action="#{userController.creercompte()}"/>  
+          </p:panel>
+          
+               </h:form> 
+                    <p:outputLabel id="script" >
+ <script>
+    function myFunction() {
+        var pass1 = document.getElementById("passwrd2").value;
+        var pass2 = document.getElementById("passwrd").value;
+        if (pass1 != pass2) {
+            //alert("Passwords Do not match");
+            
+             alert("Passwords not Match!!!");
+             
+        }
+        else {
+           
+            alert("Passwords Match!!!");
+            //document.getElementById("regForm").submit();
+             
+        }
+    }
+</script>
+       </p:outputLabel>         
+           
+                </p:layoutUnit>
+               
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+

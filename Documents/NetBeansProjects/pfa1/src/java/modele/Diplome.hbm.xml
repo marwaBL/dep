@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 juin 2014 14:56:25 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="modele.Diplome" table="diplome" catalog="pfa1">
+        <id name="idD" type="int">
+            <column name="Id_D" />
+            <generator class="assigned" />
+        </id>
+        <property name="intituleD" type="java.lang.Integer">
+            <column name="Intitule_D" />
+        </property>
+        <set name="obtenirs" inverse="true">
+            <key>
+                <column name="Id_D" not-null="true" />
+            </key>
+            <one-to-many class="modele.Obtenir" />
+        </set>
+    </class>
+</hibernate-mapping>

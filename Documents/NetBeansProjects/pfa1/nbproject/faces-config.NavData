@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="accueil.xhtml" x="678" y="210" zoom="true"/>
+        <Node id="footer.xhtml" x="552" y="406" zoom="true"/>
+        <Node id="redirect.jsp" x="701" y="150" zoom="true"/>
+        <Node id="*.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="connexion.xhtml" x="529" y="-45" zoom="true"/>
+        <Node id="page1.xhtml" x="-30" y="222" zoom="false"/>
+        <Node id="listePublication.xhtml" x="202" y="174" zoom="true"/>
+        <Node id="layout.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="EncadrementMaster.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="NouvellePublication.xhtml" x="192" y="343" zoom="true"/>
+        <Node id="newhtml.html" x="-64" y="361" zoom="true"/>
+        <Node id="testconn.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="index.xhtml" x="911" y="240" zoom="true"/>
+        <Node id="modifierProfil.xhtml" x="729" y="96" zoom="false"/>
+        <Node id="header.xhtml" x="-62" y="319" zoom="true"/>
+        <Node id="validation.xhtml" x="706" y="298" zoom="true"/>
+        <Node id="creationCompte.xhtml" x="286" y="-86" zoom="true"/>
+        <Node id="welcomePrimefaces.xhtml" x="-91" y="63" zoom="false"/>
+        <Node id="inscriptionLabo.xhtml" x="499" y="247" zoom="true"/>
+        <Node id="profilChercheur.xhtml" x="418" y="59" zoom="false"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 avr. 2014 00:52:29 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="test.Obtenir" table="obtenir" catalog="pfa1">
+        <composite-id name="id" class="test.ObtenirId">
+            <key-property name="idCh" type="int">
+                <column name="IdCh" />
+            </key-property>
+            <key-property name="idD" type="int">
+                <column name="Id_D" />
+            </key-property>
+            <key-property name="codeEtab" type="int">
+                <column name="CodeEtab" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="chercheur" class="test.Chercheur" update="false" insert="false" fetch="select">
+            <column name="IdCh" not-null="true" />
+        </many-to-one>
+        <many-to-one name="diplome" class="test.Diplome" update="false" insert="false" fetch="select">
+            <column name="Id_D" not-null="true" />
+        </many-to-one>
+        <many-to-one name="etablissement" class="test.Etablissement" update="false" insert="false" fetch="select">
+            <column name="CodeEtab" not-null="true" />
+        </many-to-one>
+        <property name="date" type="timestamp">
+            <column name="Date" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

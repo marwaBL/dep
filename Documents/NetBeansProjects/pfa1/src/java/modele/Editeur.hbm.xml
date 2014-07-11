@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 juin 2014 14:56:25 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="modele.Editeur" table="editeur" catalog="pfa1">
+        <id name="idEd" type="java.lang.Integer">
+            <column name="IdEd" />
+            <generator class="identity" />
+        </id>
+        <property name="nomEd" type="string">
+            <column name="NomEd" length="254" />
+        </property>
+        <property name="prenomEd" type="string">
+            <column name="PrenomEd" length="254" />
+        </property>
+    </class>
+</hibernate-mapping>

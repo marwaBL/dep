@@ -1,0 +1,338 @@
+/* 
+    Document   : style
+    Created on : 15 mars 2014, 08:46:10
+    Author     : USER1
+    Description:
+        Purpose of the stylesheet follows.
+*/
+.grouppanel
+{
+    background-image: url("btnbleu.png" ) ;
+    background-size: cover;
+         
+            color: #00ccff;
+           border: 1px solid #00ccff;
+    margin-left: 30px;
+     width: 200px; height: 200px ;
+}
+
+body{
+   /* background: azure;*/
+    /*font-family:"times new roman", times, cursive;
+   font-size:200%;
+   font-weight: bold;*/
+   /* background: #ffffff; */
+  /* background: #666666;*/
+    background-image: url("footer2.png" ) ;
+    background-size: cover;
+    
+}
+
+ .ui-growl { left: 770px;top:140px; z-index: 999999 !important;}
+ outputLabel
+{width:100px;
+    
+}
+ .panel
+
+{
+    /*width: 25%;*/
+   /* display:block; 
+    border-spacing:20px*/
+  /* display:block; text-align:center;*/
+  /*padding:20px 20px 5px 20px;*/
+ /*margin-bottom:10px; */
+}
+.panel2
+{
+    /*display: block;
+    border-spacing: 10px; */
+      padding:0 10px 5px 20px;
+
+}
+.menu{
+    width: 750px;
+    border:1px solid #00ccff;
+    
+}
+.profil
+{ 
+ background-image: url("profile.png");
+    background-repeat: no-repeat;  
+    width:100px;
+     text-align: center;
+     color: #339900;
+}
+.pub{ 
+    background-image: url("pub.png");
+    background-repeat: no-repeat;
+     width:100px;
+     text-align: right;
+     color: #00ccff;
+}
+.dem{ 
+    background-image: url("signupicon.png");
+    background-repeat: no-repeat;
+     width:100px;
+     text-align: right;
+     color: #00ccff;
+}
+.formulaire
+{  
+    /*margin-top: 150px;*/
+    position:absolute;
+  top:4%;
+   left:1%;
+   
+   /* padding-top: -150px;
+  padding-left: -100px;*/
+
+   /* margin: 0 auto;*/
+  
+    
+    /*border:1px solid #00ccff;*/
+   /* background: #ffffff;*/
+    width: 1450px;
+    /* width: 1340px;*/
+     /*height: 540px;*/
+     color: #666666;
+     
+   /*background-image: url("corps22.png" ) ;
+     background-size: cover;*/
+       font: 14px Arial;
+      
+}
+.fondform
+{
+      background-image: url("corps22.png" ) ;
+     background-size: cover;
+    
+}
+ .ui-widget .ui-icon-ajoutpub{
+    background-image: url("newspaper_add.png") !important;
+  
+} 
+ .ui-icon-excel {
+           /* background:  url("fond.jpg" )    !important;;*/
+          
+           width: 120px;
+           text-align: right;
+           background:  url("newspaper_add.png" ) ;
+          background-repeat: no-repeat;
+            color: #00ccff;
+           border: 1px solid #00ccff;
+          
+/*margin-top: 100px;*/  
+   /* margin-left: 150px;*/
+    /*margin-right: 50px;*/
+   
+     }
+     
+      .ui-icon-excel3 {
+           
+             width: 80px;
+           text-align: right;
+           background:  url("newspaper_add.png" ) ;
+          background-repeat: no-repeat;
+            color: #00ccff;
+           border: 1px solid #00ccff;
+   
+   
+     }
+     
+      .ui-icon-excel2 {
+           
+             background:  url("newspaper_add.png" )  !important;
+          background-repeat: no-repeat;
+            color: #00ccff;
+           border: 1px solid #00ccff;
+          
+  
+    margin-left: 350px;
+    /*margin-right: 50px;*/
+   
+     }
+      .fondbtn
+      {
+           background-image: url("btnbleu.png" ) ;
+    background-size: cover;
+         
+            color: #00ccff;
+           border: 1px solid #00ccff;
+          
+     width: 300px; height: 100px ;
+  
+   /* margin-left: 350px;*/
+      }
+    .ui-widget .ui-icon-excel1 {
+           
+             background:  url("newspaper_add.png" )  !important;
+           color: #00ccff;
+           border: 1px solid #00ccff;
+          
+  
+    margin-left: 350px;
+    /*margin-right: 50px;*/
+   
+     }
+     .combo
+     {
+         width: 150px;
+     }
+.button  {
+    width :80px;
+  left: 100px;
+   background:  url("btnbleu.png" )  !important;
+   color: #00ccff;
+    }
+     .ui-test  {
+   background-image: url("corps22.png" ) ;
+    background-size: cover;
+     }
+  .ui-center .ui-layout-unit-content  {
+   background-image: url("fondblgen.png" ) ;
+    background-size: cover;
+     /*background: #ffffff;*/
+  /* background: #f0f8ff*/
+ /* background: #fafaee*/
+    
+    }
+      .ui-center, .ui-center .ui-layout, .ui-center .ui-layout-bd, .ui-center .ui-layout-unit {
+    background-image: url("fondblgen.png" ) ;
+     background-size: cover;
+   /*  background: #ffffff;*/
+      /*padding: 15px;*/
+   
+    border: none;
+  
+    }
+
+    .ui-north .ui-layout-unit-content  {
+    background-image: url("footer2.png" ) ;
+    background-size: cover;
+   /* overflow: hidden !important;
+    z-index:40 ;*/
+    color: #ffffff;
+     font: 13px Arial, Helvetica, cursive;
+      /* position: relative;*/
+    
+        overflow:visible !important;
+    }
+     .ui-north, .ui-north .ui-layout, .ui-north .ui-layout-bd, .ui-north .ui-layout-unit {
+     background-image: url("footer2.png" ) ;
+     background-size: cover;
+      padding: 0;
+  /* overflow: hidden !important;
+   z-index:40 ;*/
+  z-index:20 !important;
+        overflow:visible !important;
+     border: none;
+       /*position: relative;*/
+      
+    
+    }
+   .ui-south, .ui-south .ui-layout, .ui-south .ui-layout-bd, .ui-south .ui-layout-unit {
+     background-image: url("footer.png" ) ;
+     background-size: cover;
+      padding: 0;
+    
+     border: none;
+    }
+    .ui-south .ui-layout-unit-content  {
+    background-image: url("footer2.png" ) ;
+    background-size: cover;
+    
+    }
+    .fond{
+          background-image: url("btnbleu.png" ) ;
+    background-size: cover;
+    }  
+  .ui-widget .ui-icon-myCancel{
+    background-image: url("add_1.png") !important;
+} 
+ .ui-widget .ui-icon-mydelete{
+    background-image: url("delete.png") !important;
+}
+  .ui-icon-home{
+    background-image: url("home.png") ;
+   background-repeat: no-repeat;
+    color: #ffffff;
+     
+}  
+  .ui-icon-pubb{
+    background-image: url("pub.png") ;
+    background-repeat: no-repeat;
+     
+    
+     color: #ffffff;
+} 
+.formmenu{
+     position:absolute;
+  background-image: url("footer2.png" ) ;
+     background-size: cover;
+   left:35%;
+    color: #00ccff;
+   width: 680px;
+    border: none;
+     font:bold 13px Arial, Helvetica, cursive;
+      z-index: 9999;
+}
+.formmenu2{
+     position:absolute;
+  background-image: url("footer2.png" ) ;
+     background-size: cover;
+   left:85%;
+    color: #00ccff;
+   
+    border: none;
+     font:bold 15px Arial, Helvetica, cursive;
+      z-index: 9999;
+}
+.affaires .ui-menuitem-text{
+    color: #00ccff; 
+   
+    z-index:60 ; position: relative;
+}
+
+.ui-widget .ui-icon-home{
+    background-image: url("accueil.png") !important;
+} 
+.ui-widget .ui-icon-editer{
+    background-image: url("edit-file.png") !important;
+    
+}
+
+.ui-icon-fond{
+         
+    background: #ffffff;
+           border: 1px solid #00ccff;
+    } 
+    
+   .formulairepub
+   {
+       
+   
+         /*margin-top: 150px;*/
+    position:absolute;
+  top:5%;
+   left:22%;
+   
+   /* padding-top: -150px;*/
+  /*padding: 20px;*/
+
+   /* margin: 0 auto;*/
+  
+    
+    /*border:1px solid #00ccff;*/
+   /* background: #ffffff;*/
+    
+    
+     /*height: 540px;*/
+     color: #666666;
+     
+   /*background-image: url("corps22.png" ) ;
+     background-size: cover;*/
+       font: 14px Arial;
+   }
+    
+  

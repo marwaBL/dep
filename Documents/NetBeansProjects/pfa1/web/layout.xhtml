@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <link rel="stylesheet" type="text/css" href="style.css"/>
+            
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Connection</title>
+                
+ 
+                <style>
+
+                </style>      
+           
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit  styleClass="ui-north" position="north" size="80"  >
+                     <center>  
+                         <h:outputLabel  value="Re"  style="color: #00ccff" />      
+                    <h:outputLabel  value="cherche"  />  
+                    
+                    </center>
+                </p:layoutUnit>
+
+                <p:layoutUnit styleClass="ui-south" position="south" size="40" >
+                   
+                </p:layoutUnit>
+
+              
+                <p:layoutUnit position="center"  styleClass="ui-center">
+                   
+                    <h:form id="form" styleClass="formulaire">  
+                        <p:growl id="growl" showDetail="true" sticky="true" life="2000"  />  
+        <h:panelGrid columns="2" id ="panel"  >  
+            <h:outputLabel for="login" value="Login: *" />  
+            <p:inputText id="login" title="Entrez le login" required="true" label="Login" value="#{userController.login}">  
+                 
+            </p:inputText>  
+            <p:tooltip for="login" showEvent="focus" hideEvent="blur" showEffect="fade" hideEffect="fade" styleClass="panel"/> 
+          <!--  <p:message for="login" />  -->
+   
+            <h:outputLabel for="password" value="password: *" />  
+            <p:password id="password"  title="Entrez le mot de passe" label="password" required="true" value="#{userController.password}" />  
+                
+               <p:tooltip for="password" showEvent="focus" hideEvent="blur" showEffect="fade" hideEffect="fade" style="background: aliceblue ;" /> 
+            
+           <!-- <p:message for="password" />  -->
+  
+        </h:panelGrid>  
+     
+                    <p:commandButton id="connection"    oncomplete="handleLoginRequest(xhr, status, args)" value="Connection" update="panel,growl" styleClass="ui-icon-excel" action="#{userController.dologin()}"  />  
+        <!-- <p:commandButton id="creercompte" value="Creer Compte"  styleClass="ui-icon-excel" onclick="PF('dlg2').show();" />            
+          <p:commandLink id="ajax"   styleClass="ui-icon-excel" onclick="dlg2.show();">  
+        <h:outputText value="creer Compte" />  
+    </p:commandLink> --> 
+               
+        <p:commandButton id="loginLink" value="creer compte" styleClass="ui-icon-excel"  actionListener="#{userController.chooseCar()}"   >   
+         <p:ajax event="dialogReturn"  update="growl"/>
+        </p:commandButton>  
+  </h:form>     
+        
+    
+                   
+  <p:dialog id="dialog" header="Creer Compte" widgetVar="dlg" resizable="false" modal="true"  appendToBody="true">  
+ <h:form id="dlgForm" >
+      <p:growl id="growl2" showDetail="true" sticky="true"  life="2000" />  
+        <h:panelGrid columns="2" cellpadding="10" id ="p">  
+            <h:outputLabel for="identifiant" value="Identifiant:*" />  
+            <p:inputText  style="margin-left: 45px" 
+                id="identifiant" required="true"  title="Entrez l'identifiant" label="identifiant" value="#{userController.identifiant}" />  
+             
+            
+            <h:outputLabel for="passwrd" value="Password:*" />  
+            <p:password  feedback="true" style="margin-left: 45px" promptLabel="Entrez Votre mot de passe"  id="passwrd" required="true" label="passwrd"  value="#{userController.passwrd}" /> 
+            </h:panelGrid> 
+            <h:panelGrid columns="3" cellpadding="5" id ="p2"> 
+            <h:outputLabel for="passwrd2" value="Confirmer Password:*" />  
+            <p:password  
+                id="passwrd2" required="true" label="passwrd2" value="#{userController.passwrd2}" /> 
+            <p:tooltip for="passwrd2" value="Retappez le mot de passe" showEvent="focus" hideEvent="blur" showEffect="fade" hideEffect="fade"  styleClass="panel"/> 
+              </h:panelGrid>
+             <h:panelGrid columns="2" cellpadding="10" id ="p1"> 
+            <h:outputLabel for="email" value="Email:*" />  
+            <p:inputText   style="margin-left: 55px"
+                id="email"  label="email" required="true"  value="#{userController.email}" />
+              
+            
+            <h:outputLabel for="type" value="Compte:*" /> 
+            <p:selectOneMenu id="type"  required="true" value="#{userController.type}" style="margin-left: 55px" >  
+                <f:selectItem itemLabel="" itemValue="" />  
+                 <f:selectItem itemLabel="Chercheur" itemValue="Chercheur" />  
+                 <f:selectItem itemLabel="Administrateur Laboratoire" itemValue="Administrateur laboratoire" /> 
+                 <f:selectItem itemLabel="Administrateur Systeme" itemValue="Administrateur Systeme" /> 
+ <p:ajax update="type"  
+            event="change" /> 
+           
+              
+            </p:selectOneMenu> 
+             </h:panelGrid>
+                <p:commandButton id="loginButton" value="Creer" update="growl2,dlgForm"   
+                       
+                                 process="@form"  styleClass="button"
+    oncomplete="handleLoginRequest(xhr, status, args)" action="#{userController.creercompte()}"/>  
+          
+          
+               </h:form> 
+   
+    </p:dialog>
+  
+ 
+  
+<script type="text/javascript">  
+    function handleLoginRequest(xhr, status, args) {  
+        if(args.validationFailed || !args.loggedIn) {  
+            dlg.jq.effect("shake", { times:5 }, 100);  
+        }   
+        else {  
+            dlg.hide();  
+            $('#loginLink').fadeOut();  
+        }  
+    }  
+   
+</script>       
+ 
+              
+           
+                </p:layoutUnit>
+               
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+

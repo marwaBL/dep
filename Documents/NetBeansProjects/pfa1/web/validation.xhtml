@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <link rel="stylesheet" type="text/css" href="validation.css"/>
+            <script></script>
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Validation</title>
+                
+ 
+                     
+           
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                 <p:layoutUnit  styleClass="ui-north" position="north" size="50"  >
+                  <ui:include src="header.xhtml" />
+                </p:layoutUnit>
+
+                
+
+              
+                <p:layoutUnit position="center"  styleClass="ui-center">
+                   
+      
+                     
+           <h:form id="form"  styleClass="table">  
+              <p:growl id="growl" showDetail="true"  sticky="true" life="2000" widgetVar="dlg"  />  
+               <p:dataTable value="#{validationController.listins}" var="car" id="cars" 
+        paginator="true" rows="5"  
+        paginatorTemplate="{PreviousPageLink} {CurrentPageReport} {NextPageLink} {RowsPerPageDropdown}"  
+        rowsPerPageTemplate="5,10,15" >  
+  
+            <f:facet name="header">  
+               Demandes d'inscription  
+            </f:facet>  
+                   <p:column width="30" >
+            <p:commandButton id ="plus" icon="ui-icon-search"  update=":form:carDetail" oncomplete="carDialog.show()" title="View Detail">  
+                <f:setPropertyActionListener value="#{car}" target="#{validationController.chselected}" />  
+            </p:commandButton>  
+          
+          </p:column>
+                   <p:column >
+        <f:facet name="header "  >  
+                <h:outputText value="nom prénom" />  
+       
+            </f:facet> 
+            <h:outputText value=" #{car.prenomCh} #{car.nomCh}"  />
+              </p:column> 
+                   <p:column width="30">
+                <p:commandButton  icon="ui-icon-excell"   action="#{validationController.valider()}" oncomplete="#{validationController.update()}" update="@form"  >  
+         <f:setPropertyActionListener value="#{car}" target="#{validationController.chselected}" />  
+                </p:commandButton>
+             </p:column>
+                   <p:column width="30">
+                       <p:commandButton  icon="ui-icon-excell1"   action="#{validationController.refuser()}" oncomplete="#{validationController.update()}" update="@form"  >  
+         <f:setPropertyActionListener value="#{car}" target="#{validationController.chselected}" />  
+                </p:commandButton>
+             </p:column>
+        
+    </p:dataTable>  
+              
+        <p:dialog height="250" width="250" header="Plus de  Detail" widgetVar="carDialog" modal="true" showEffect="fade" appendToBody="true" >  
+        <p:outputPanel id="carDetail" style="text-align:center; font: 12px Arial;" layout="block">  
+          
+            
+              
+            <h:panelGrid  columns="2" cellpadding="5">  
+                <p:graphicImage value="#{validationController.image}" width="80" height="80"/> 
+                <h:outputText id="typech" value="#{validationController.chselected.typeCh}" />  
+                <h:outputText id="modelNo" value="#{validationController.chselected.nomCh} #{validationController.chselected.prenomCh}" />  
+                  <h:outputText  value="" />  
+                    <h:outputText id="CIN" value="CIN" />  
+                  <h:outputText  value="#{validationController.chselected.cinCh} " />  
+                  <h:outputText id="Structure" value="Email" />  
+                  <h:outputText  value="#{validationController.chselected.emailCh} " />  
+                  
+               </h:panelGrid>  
+        </p:outputPanel>  
+    </p:dialog>  
+  
+</h:form>  
+                </p:layoutUnit>
+               
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+
+

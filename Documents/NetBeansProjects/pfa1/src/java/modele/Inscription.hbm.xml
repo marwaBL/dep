@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 juin 2014 14:56:25 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="modele.Inscription" table="inscription" catalog="pfa1">
+        <composite-id name="id" class="modele.InscriptionId">
+            <key-property name="idCh" type="int">
+                <column name="IdCh" />
+            </key-property>
+            <key-property name="code" type="string">
+                <column name="Code" length="254" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="chercheur" class="modele.Chercheur" update="false" insert="false" fetch="select">
+            <column name="IdCh" not-null="true" />
+        </many-to-one>
+        <many-to-one name="structurerecherche" class="modele.Structurerecherche" update="false" insert="false" fetch="select">
+            <column name="Code" length="254" not-null="true" />
+        </many-to-one>
+        <property name="etat" type="string">
+            <column name="Etat" length="254" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 juin 2014 14:56:25 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="modele.Publication" table="publication" catalog="pfa1">
+        <id name="idPub" type="java.lang.Integer">
+            <column name="IdPub" />
+            <generator class="identity" />
+        </id>
+        <property name="titre" type="string">
+            <column name="Titre" length="254" />
+        </property>
+        <property name="annee" type="java.lang.Integer">
+            <column name="annee" />
+        </property>
+        <property name="mois" type="java.lang.Integer">
+            <column name="mois" />
+        </property>
+        <property name="note" type="string">
+            <column name="note" length="254" />
+        </property>
+        <property name="cle" type="string">
+            <column name="cle" length="254" />
+        </property>
+        <property name="howpub" type="string">
+            <column name="howpub" length="254" />
+        </property>
+        <property name="adresse" type="string">
+            <column name="adresse" length="254" />
+        </property>
+        <property name="journal" type="string">
+            <column name="journal" length="254" />
+        </property>
+        <property name="pagedeb" type="java.lang.Integer">
+            <column name="pagedeb" />
+        </property>
+        <property name="pagefin" type="java.lang.Integer">
+            <column name="pagefin" />
+        </property>
+        <property name="volume" type="java.lang.Integer">
+            <column name="volume" />
+        </property>
+        <property name="nombre" type="java.lang.Integer">
+            <column name="nombre" />
+        </property>
+        <property name="edition" type="string">
+            <column name="edition" length="254" />
+        </property>
+        <property name="chapitre" type="string">
+            <column name="chapitre" length="254" />
+        </property>
+        <property name="serie" type="string">
+            <column name="serie" length="254" />
+        </property>
+        <property name="booktitle" type="string">
+            <column name="booktitle" length="254" />
+        </property>
+        <property name="organisation" type="string">
+            <column name="organisation" length="254" />
+        </property>
+        <property name="type" type="string">
+            <column name="type" length="254" />
+        </property>
+        <property name="etablissement" type="string">
+            <column name="etablissement" length="254" />
+        </property>
+        <property name="typeRapport" type="string">
+            <column name="typeRapport" length="254" />
+        </property>
+        <set name="ecrires" inverse="true">
+            <key>
+                <column name="IdPub" not-null="true" />
+            </key>
+            <one-to-many class="modele.Ecrire" />
+        </set>
+    </class>
+</hibernate-mapping>

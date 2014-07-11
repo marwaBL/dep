@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <link rel="stylesheet" type="text/css" href="profilchercheur.css"/>
+            <script></script>
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Profil</title>
+                
+ 
+                     
+           
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit  styleClass="ui-north" position="north" size="50"  >
+                  <ui:include src="header.xhtml" />
+                </p:layoutUnit>
+
+                
+
+              
+                <p:layoutUnit position="center"  styleClass="ui-center">
+                 
+    
+ 
+       
+                    <h:form id="form" styleClass="formulairepub"  >
+                        <!--<h:panelGrid  id="p11" columns="1" cellpadding="20"  > 
+                        <p:panel styleClass="fondbtn"   >
+                   </p:panel>  
+                        <p:panel styleClass="fondbtn"  ></p:panel>
+                        <p:commandButton id="loginButton" value="Publication"  action="#{profilController.genererFicheChercheur()}" style="margin-left: 550px;margin-top: 50px; width: 150px; text-align: right"  styleClass="ui-icon-excel"  /> 
+           
+                        </h:panelGrid>-->
+                        
+                        
+                        
+                        <h:panelGrid  id="p11" columns="1" cellpadding="20"  > 
+                        <p:panel    >
+                              <!--<h:panelGrid  id="p11111" columns="2" cellpadding="20"  > 
+                            <p:graphicImage value="Document-flat-brown-64.png"/>
+                            <p:outputLabel value="TOP Publication" style=" color:  #666666;  font: bold 18px Arial;" />
+                              </h:panelGrid>-->
+                             <p:outputPanel  id="panelauteur">
+                                  <h:panelGrid  id="p111" columns="2"  > 
+                            <p:graphicImage value="pub.png"/>
+                            <p:outputLabel value="Publications Récentes" style=" color: #009966;  font:  18px Arial;" />
+                              </h:panelGrid>
+                                 <ui:repeat  value="#{profilController.listpub}" var="pub"  varStatus="loop"  >  
+      <h:panelGrid  id="p11" columns="7" cellpadding="7"   > 
+          
+           <p:outputLabel value="[#{pub.type.charAt(0)}]" ></p:outputLabel>
+          
+           <p:commandLink value="#{pub.titre}"  id="connectiont" />
+            <p:overlayPanel id="chartPanelgfr" for="connectiont"  showEffect="frade" style=" background: #ffffff">  
+                <p:outputLabel value="#{pub.ecrires}"  >
+                 </p:outputLabel>
+               
+    </p:overlayPanel> 
+            
+             
+             </h:panelGrid>
+      </ui:repeat>
+      </p:outputPanel>
+                   </p:panel>  
+                </h:panelGrid> 
+                        
+                         <p:panel   style=" width: 710px; margin-left: 20px"  >
+                            <!--  <h:panelGrid  id="pkkk11" columns="2"  > 
+                            <p:graphicImage value="profile.png"/>
+                            <p:outputLabel value="Nouveaux Chercheurs" style=" color: #009966 ;  font:18px Arial;" />
+                              </h:panelGrid>
+                        </p:panel >-->
+                         
+                          
+                            <h:panelGrid  id="pkkk11" columns="2"  > 
+                                <p:graphicImage value="profile.png"  />
+                                  <p:outputLabel value="Nouveaux Chercheurs" style=" color: #009966 ; margin-left: -140px; font:18px Arial;" />
+                              <ui:repeat  value="#{profilController.listrecuser}" var="chercheur"  varStatus="loop"   >  
+                                  <h:panelGrid  id="p1cher1" columns="1" cellpadding="7"  style="margin-left: 35px;" > 
+          
+           
+          <p:outputLabel value="#{chercheur.prenomCh}  #{chercheur.nomCh}"  id="connectiontuu"  style=" "/>
+         
+            
+               
+  
+            
+             
+             </h:panelGrid>
+      </ui:repeat>
+                            
+                              
+      </h:panelGrid>
+                   </p:panel>  
+                       
+                            
+                        
+       </h:form>
+  
+             <script type="text/javascript">  
+    function handleLoginRequest(xhr, status, args) {  
+        if(args.validationFailed || !args.loggedIn) {  
+            dlg.jq.effect("shake", { times:5 }, 100);  
+        }   
+        else {  
+            dlg.hide();  
+            $('#loginLink').fadeOut();  
+        }  
+    }  
+   
+</script>                     
+                </p:layoutUnit>
+               
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+

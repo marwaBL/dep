@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 juin 2014 14:56:25 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="modele.Ecrire" table="ecrire" catalog="pfa1">
+        <composite-id name="id" class="modele.EcrireId">
+            <key-property name="idPub" type="int">
+                <column name="IdPub" />
+            </key-property>
+            <key-property name="idAut" type="int">
+                <column name="IdAut" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="publication" class="modele.Publication" update="false" insert="false" fetch="select">
+            <column name="IdPub" not-null="true" />
+        </many-to-one>
+        <many-to-one name="auteur" class="modele.Auteur" update="false" insert="false" fetch="select">
+            <column name="IdAut" not-null="true" />
+        </many-to-one>
+        <property name="rang" type="java.lang.Integer">
+            <column name="rang" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <link rel="stylesheet" type="text/css" href="NouvellePublication.css"/>
+            <script></script>
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Profil</title>
+                
+ 
+                     
+           
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit  styleClass="ui-north" position="north" size="60"  >
+    <ui:include src="header.xhtml" />
+                </p:layoutUnit>
+
+                
+
+              
+                <p:layoutUnit position="center"  styleClass="ui-center">
+                 
+    
+ 
+                   
+       <h:form id="form" styleClass="formulaire">  
+           
+        <p:growl id="growl" showDetail="true" sticky="true" life="2000"  />         
+          <h:panelGrid  columns="5" cellpadding="15"  > 
+             <p:outputLabel value="Titre"></p:outputLabel>
+             <p:inputText  id="titre" size="60" label="titre" style="margin-left: 30px" value="#{ajoutPublicationController.titre}" required="true" requiredMessage="Titre Obligatoire" ></p:inputText>
+             <p:graphicImage id="upload"   value="file-upload.png"  /> 
+              <p:overlayPanel id="chartPanel" for="upload" hideEffect="fade" >  
+               <p:fileUpload  mode="advanced" dragDropSupport="false" 
+                     
+                  sizeLimit="100000000"  allowTypes="/(\.|\/)(pdf)$/"  invalidSizeMessage="The maximum file size allowed is 10 Megabytes !"
+                 invalidFileMessage="You are allowed to upload only documents !" />
+ 
+              </p:overlayPanel>
+                 
+          </h:panelGrid>
+         <p:outputPanel  id="panelauteur">
+             <ui:repeat  value="#{ajoutPublicationController.testauteur}" var="aut" >  
+      <h:panelGrid  id="p11" columns="7" cellpadding="15"  > 
+             <p:outputLabel value="Auteur(s)" ></p:outputLabel>
+             <p:autoComplete id="nomaut"  required="true" requiredMessage="Nom auteur Obligatoire" 
+                         
+                              value="#{aut.nomAut}"  completeMethod="#{ajoutPublicationController.completeNomAuteur}"  />  
+  
+              <p:watermark for="nomaut" value="Nom" />
+              <p:autoComplete id="prenomaut"    style="margin-left: -40px" required="true" requiredMessage="Prénom Obligatoire"
+                          
+                               value="#{aut.prenomAut}"  completeMethod="#{ajoutPublicationController.completePrenomAuteur}"  />  
+  
+              <p:watermark for="prenomaut" value="Prénom" />
+              
+              
+              <p:commandButton id="add" icon="ui-icon-myCancel"     update=":form" action="#{ajoutPublicationController.addPanelAuteur()}"     /> 
+              <p:commandButton id="remove" icon="ui-icon-mydelete"    update="@form" action="#{ajoutPublicationController.removePanelAuteur()}"     /> 
+              
+             </h:panelGrid>
+      </ui:repeat>
+      </p:outputPanel>
+      <h:panelGrid  columns="5" cellpadding="15"  > 
+             <p:outputLabel value="Date"></p:outputLabel>
+            
+        <p:autoComplete id="basicPojo"   size="5" style="margin-left: 30px"
+                        dropdown="true"    
+                        value="#{ajoutPublicationController.mois}"  completeMethod="#{ajoutPublicationController.complete}"  forceSelection="true"/>  
+   <p:watermark for="basicPojo" value="mois" />
+    <p:inputMask  id="annee"  label="annee" style="margin-left: -50px"  size="5" value="#{ajoutPublicationController.annee}"  mask="9999"  />
+        <p:watermark for="annee" value="annee" />
+             </h:panelGrid>
+         <h:panelGrid  columns="2" cellpadding="15"  > 
+             <p:outputLabel value="Type"></p:outputLabel>
+             <p:selectOneMenu id="type"  style="width: 180px; margin-left: 30px;" value="#{ajoutPublicationController.type}"   >  
+                 <f:selectItem itemLabel="" itemValue="" /> 
+                  <f:selectItem itemLabel="Article" itemValue="Article" /> 
+                 <f:selectItem itemLabel="Rapport" itemValue="Rapport" /> 
+                 <f:selectItem itemLabel="Doc" itemValue="Doc" /> 
+                  <f:selectItem itemLabel="Divers" itemValue="Divers" /> 
+                 <f:selectItem itemLabel="Collection" itemValue="Collection" /> 
+                 <f:selectItem itemLabel="Livre" itemValue="Livre" /> 
+                 <f:selectItem itemLabel="Conference" itemValue="Conference" /> 
+                 <f:selectItem itemLabel="Inbook" itemValue="Inbook" /> 
+                 <f:selectItem itemLabel="Brochure" itemValue="Brochure" /> 
+                
+                 <p:ajax update="paneldoc,panelrapport,paneldivers,panelcollection,panelcollection2,panelediteur,panelearticle,panelebrochure,paneleInbook,paneleInbook2,panelconference,panelconference2,panelelivre"  />
+                
+              
+            </p:selectOneMenu>
+             </h:panelGrid>
+      
+      <!-- <h:panelGrid  columns="2" cellpadding="15"  > 
+             <p:outputLabel value="Clé"></p:outputLabel>
+             <p:inputText  id="cle"  label="cle" style="margin-left: 40px" value="#{ajoutPublicationController.cle}" size="25"></p:inputText>
+             </h:panelGrid>-->
+      
+     
+        <p:outputPanel id="panelediteur">
+        <h:panelGrid  columns="5" cellpadding="15"   rendered="#{ajoutPublicationController.displayPanelEditeur()}" > 
+             <p:outputLabel value="Editeur"></p:outputLabel>
+             <p:autoComplete id="nomed"  required="true" requiredMessage="Nom Editeur Obligatoire" style="margin-left: 15px; "
+                         
+                             value="#{ajoutPublicationController.nomed}"  completeMethod="#{ajoutPublicationController.completeNomEditeur}"  />  
+  
+              <p:watermark for="nomed" value="Nom" />
+              <p:autoComplete id="prenomed"    style="margin-left: -40px" required="true" requiredMessage="Prénom Editeur Obligatoire"
+                          
+                              value="#{ajoutPublicationController.prenomed}"  completeMethod="#{ajoutPublicationController.completePrenomEditeur}"  />  
+  
+              <p:watermark for="prenomed" value="Prénom" />
+      </h:panelGrid>
+        </p:outputPanel>
+         <p:outputPanel id="panelearticle">
+             <h:panelGrid  columns="6" cellpadding="15"   rendered="#{ajoutPublicationController.displayPanelArticle()}" > 
+             <p:outputLabel value="Journal"></p:outputLabel>
+             <p:inputText  id="journal"  style="margin-left: 10px;"  label="titre" value="#{ajoutPublicationController.journal}" ></p:inputText>
+             <p:outputLabel value="Volume" ></p:outputLabel>
+             <p:inputText  id="volume"  size="5" label="titre" value="#{ajoutPublicationController.volumeA}" ></p:inputText>
+             <p:outputLabel value="Nombre" style="margin-left: 10px;"></p:outputLabel>
+             <p:inputText  id="nombre"  size="5" label="titre"  value="#{ajoutPublicationController.nombreA}"></p:inputText>
+             <p:outputLabel value="Pages"></p:outputLabel>
+             <p:inputText  id="paged"  size="3"  label="titre" style="margin-left: 10px;" value="#{ajoutPublicationController.pagedebA}" ></p:inputText>
+              <p:watermark for="paged" value="De" />
+             
+              <p:inputText  id="pagef"  size="3" label="titre" style="margin-left: -240px;" value="#{ajoutPublicationController.pagefinA}" ></p:inputText>
+              <p:watermark for="pagef" value="à" />
+      </h:panelGrid>
+        </p:outputPanel>
+        <p:outputPanel id="panelebrochure">
+            <h:panelGrid  columns="4" cellpadding="15"   rendered="#{ajoutPublicationController.displayPanelBrochure()}" > 
+             <p:outputLabel value="Adresse"></p:outputLabel>
+             <p:inputText  id="adresse"  style="margin-left: 10px;"  label="titre" value="#{ajoutPublicationController.adresseB}" ></p:inputText>
+             <p:outputLabel value="Comment publier" ></p:outputLabel>
+             <p:inputText  id="publier"  size="20" label="titre" value="#{ajoutPublicationController.howpubB}" ></p:inputText>
+             
+      </h:panelGrid>
+        </p:outputPanel>
+          <p:outputPanel id="paneleInbook">
+              <h:panelGrid  columns="4" cellpadding="15"   rendered="#{ajoutPublicationController.displayPanelInbook()}" > 
+             <p:outputLabel value="Edition"></p:outputLabel>
+             <p:inputText  id="edition"  style="margin-left: 10px;"  label="titre" value="#{ajoutPublicationController.editionI}" ></p:inputText>
+            <p:outputLabel value="Adresse" ></p:outputLabel>
+            <p:inputText  id="adresse1"    label="titre"  value="#{ajoutPublicationController.adresseI}"></p:inputText>
+             <p:outputLabel value="Serie"></p:outputLabel>
+             <p:inputText  id="serie"  style="margin-left: 10px;"  label="titre"  value="#{ajoutPublicationController.serieI}"></p:inputText>
+             <p:outputLabel value="Volume" ></p:outputLabel>
+             <p:inputText  id="volume1"  size="5" label="titre"  value="#{ajoutPublicationController.volumeA}"></p:inputText>
+             </h:panelGrid>
+      
+        </p:outputPanel>
+              <p:outputPanel id="paneleInbook2">
+              <h:panelGrid  columns="7" cellpadding="15"   rendered="#{ajoutPublicationController.displayPanelInbook()}" > 
+             
+             <p:outputLabel value="Pages"></p:outputLabel>
+             <p:inputText  id="pagedb"  size="3"  label="titre" style="margin-left: 10px;" value="#{ajoutPublicationController.pagedebA}" ></p:inputText>
+              <p:watermark for="pagedb" value="De" />
+             
+              <p:inputText  id="pagefb"  size="3" label="titre" style="margin-left: -40px;" value="#{ajoutPublicationController.pagefinA}" ></p:inputText>
+              <p:watermark for="pagefb" value="à" />
+               <p:outputLabel value="Chapitre" style="margin-left: 30px;" ></p:outputLabel>
+               <p:inputText  id="chapitre"   label="titre" value="#{ajoutPublicationController.chapitreI}"></p:inputText>
+             </h:panelGrid>
+        </p:outputPanel> 
+        
+          <p:outputPanel id="panelconference">
+              <h:panelGrid  columns="4" cellpadding="15"   rendered="#{ajoutPublicationController.displayPanelConference()}" > 
+             <p:outputLabel value="Edition"></p:outputLabel>
+             <p:inputText  id="edition1"  style="margin-left: -25px;"  label="titre" value="#{ajoutPublicationController.editionC}" ></p:inputText>
+            <p:outputLabel value="Adresse" ></p:outputLabel>
+            <p:inputText  id="adresse2"    label="titre" value="#{ajoutPublicationController.adresseC}" ></p:inputText>
+             <p:outputLabel value="Organisation"></p:outputLabel>
+             <p:inputText  id="organisation"  style="margin-left: -25px;"  label="titre" value="#{ajoutPublicationController.organisationC}" ></p:inputText>
+             <p:outputLabel value="Titre du livre" ></p:outputLabel>
+             <p:inputText  id="titrelivre"   label="titre"  value="#{ajoutPublicationController.booktitleC}" ></p:inputText>
+             </h:panelGrid>
+      
+        </p:outputPanel>
+              <p:outputPanel id="panelconference2">
+                  <h:panelGrid  columns="5" cellpadding="15"   rendered="#{ajoutPublicationController.displayPanelConference()}" > 
+             
+             <p:outputLabel value="Pages"></p:outputLabel>
+             <p:inputText  id="pagedc"  size="3"  label="titre" style="margin-left: 20px;" value="#{ajoutPublicationController.pagedebA}" ></p:inputText>
+              <p:watermark for="pagedc" value="De" />
+             
+              <p:inputText  id="pagefc"  size="3" label="titre" style="margin-left: -40px;" value="#{ajoutPublicationController.pagefinA}" ></p:inputText>
+              <p:watermark for="pagefc" value="à" />
+               
+             </h:panelGrid>
+        </p:outputPanel> 
+        <p:outputPanel id="panelelivre">
+            <h:panelGrid  columns="4" cellpadding="15"   rendered="#{ajoutPublicationController.displayPanelLivre()}" > 
+             <p:outputLabel value="Edition"></p:outputLabel>
+             <p:inputText  id="edition2"  style="margin-left: 10px;"  label="titre" ></p:inputText>
+            <p:outputLabel value="Adresse" ></p:outputLabel>
+             <p:inputText  id="adresse3"    label="titre" ></p:inputText>
+             <p:outputLabel value="Serie"></p:outputLabel>
+             <p:inputText  id="serie1"  style="margin-left: 10px;"  label="titre" ></p:inputText>
+             <p:outputLabel value="Volume" ></p:outputLabel>
+             <p:inputText  id="volume3"  size="5" label="titre"  ></p:inputText>
+             </h:panelGrid>
+      
+        </p:outputPanel>
+         <p:outputPanel id="panelcollection">
+             <h:panelGrid  columns="4" cellpadding="15"   rendered="#{ajoutPublicationController.displayPanelCollection()}" > 
+             <p:outputLabel value="Edition"></p:outputLabel>
+             <p:inputText  id="edition4"  style="margin-left: -25px;"  label="titre" ></p:inputText>
+            <p:outputLabel value="Adresse" ></p:outputLabel>
+             <p:inputText  id="adresse4"    label="titre" ></p:inputText>
+            
+             <p:outputLabel value="Titre du livre" ></p:outputLabel>
+             <p:inputText  id="titrelivre1"  style="margin-left: -25px;" label="titre"  ></p:inputText>
+             </h:panelGrid>
+      
+        </p:outputPanel>
+              <p:outputPanel id="panelcollection2">
+                  <h:panelGrid  columns="5" cellpadding="15"   rendered="#{ajoutPublicationController.displayPanelCollection()}" > 
+             
+             <p:outputLabel value="Pages"></p:outputLabel>
+             <p:inputText  id="pagedcol"  size="3"  label="titre" style="margin-left: 20px;" ></p:inputText>
+              <p:watermark for="pagedcol" value="De" />
+             
+              <p:inputText  id="pagefcol"  size="3" label="titre" style="margin-left: -40px;" ></p:inputText>
+              <p:watermark for="pagefcol" value="à" />
+               
+             </h:panelGrid>
+        </p:outputPanel> 
+        
+         <p:outputPanel id="paneldivers">
+             <h:panelGrid  columns="2" cellpadding="15"   rendered="#{ajoutPublicationController.displayPanelDivers()}" > 
+             
+                 <p:outputLabel value="Comment publier" ></p:outputLabel>
+             <p:inputText  id="publier3"    label="titre"  ></p:inputText>
+              
+             </h:panelGrid>
+        </p:outputPanel> 
+        <p:outputPanel id="paneldoc">
+            <h:panelGrid  columns="4" cellpadding="15"   rendered="#{ajoutPublicationController.displayPanelDoc()}" > 
+             <p:outputLabel value="Edition"></p:outputLabel>
+             <p:inputText  id="edition5"  style="margin-left: -25px;"  label="titre" ></p:inputText>
+            <p:outputLabel value="Adresse" ></p:outputLabel>
+             <p:inputText  id="adresse5"    label="titre" ></p:inputText>
+            
+             <p:outputLabel value="Organisation" ></p:outputLabel>
+             <p:inputText  id="organisation2"  style="margin-left: -25px;" label="titre"  ></p:inputText>
+             </h:panelGrid>
+        </p:outputPanel> 
+         <p:outputPanel id="panelrapport">
+             <h:panelGrid  columns="4" cellpadding="15"   rendered="#{ajoutPublicationController.displayPanelRapport()}" > 
+             <p:outputLabel value="Etablissement"></p:outputLabel>
+             <p:inputText  id="etab"  style="margin-left: -25px;"  label="titre" ></p:inputText>
+            <p:outputLabel value="Adresse" ></p:outputLabel>
+             <p:inputText  id="adresse6"    label="titre" ></p:inputText>
+            
+             <p:outputLabel value="Type" ></p:outputLabel>
+             <p:selectOneMenu id="typeRapport"  style="width: 150px; margin-left: -25px;" value="#{ajoutPublicationController.type}" requiredMessage="Vous devez indiquer le type " required="true"   >  
+                 <f:selectItem itemLabel="Master" itemValue="Master" /> 
+                  <f:selectItem itemLabel="Doctorat" itemValue="Doctorat" /> 
+                 <f:selectItem itemLabel="Institut" itemValue="Institut" /> 
+                
+             </p:selectOneMenu>
+             </h:panelGrid>
+        </p:outputPanel> 
+       <p:outputPanel  id="panelchampsupp">
+           <ui:repeat  value="#{ajoutPublicationController.champssup}" var="supp" >  
+      <h:panelGrid  id="p11" columns="2" cellpadding="15"  > 
+             <p:outputLabel value="#{supp}" ></p:outputLabel>
+              <p:inputText  id="chsup"    label="titre" ></p:inputText>
+  
+              
+             </h:panelGrid>
+      </ui:repeat>
+      </p:outputPanel>
+      <p:outputPanel  id="panelchampsupp2">
+          <ui:repeat  value="#{ajoutPublicationController.champssup1}" var="supp" >  
+      <h:panelGrid  id="p11" columns="2" cellpadding="15"  > 
+             <p:outputLabel value="#{supp}" ></p:outputLabel>
+              <p:inputText  id="chsup"    label="titre" ></p:inputText>
+  
+              
+             </h:panelGrid>
+      </ui:repeat>
+      </p:outputPanel>
+      <p:outputPanel  id="panelchampsupp3">
+          <ui:repeat  value="#{ajoutPublicationController.champssup2}" var="supp" >  
+      <h:panelGrid  id="p11" columns="2" cellpadding="15"  > 
+             <p:outputLabel value="#{supp}" ></p:outputLabel>
+              <p:inputText  id="chsup"    label="titre" ></p:inputText>
+  
+              
+             </h:panelGrid>
+      </ui:repeat>
+      </p:outputPanel>
+      <p:commandButton id="pluschamps"  onclick="dlg.show()"     value="..." style=" margin-left: 25px;" /> 
+      <p:commandButton id="ajouter"  process="@form" styleClass="ui-icon-excelmconn"  update="@form" value="Enregistrer" style=" color: #ffffff; font:blod 15px Arial, Helvetica, cursive;"  action="#{ajoutPublicationController.insert()}"    />     
+        
+  </h:form>
+                    <p:dialog  header="Champs supplementaires" widgetVar="dlg" style=" margin-top: 270px;"   appendToBody="true">  
+  <h:form id="dlgForm">
+          <h:panelGrid  columns="1" cellpadding="5"  > 
+             
+              <p:selectManyCheckbox id="pageDirection" layout="grid"  value="#{ajoutPublicationController.champssup}" >  
+            <f:selectItem itemLabel="journal" itemValue="journal"/>  
+            <f:selectItem itemLabel="clé" itemValue="clé"/>
+            <f:selectItem itemLabel="serie" itemValue="serie"/>
+            <f:selectItem itemLabel="note" itemValue="note"/>
+            </p:selectManyCheckbox > 
+            <p:selectManyCheckbox id="pageDirection2" layout="grid"  value="#{ajoutPublicationController.champssup1}"> 
+            <f:selectItem itemLabel="volume" itemValue="volume"/>
+            <f:selectItem itemLabel="nombre" itemValue="nombre"/>
+            <f:selectItem itemLabel="adresse" itemValue="adresse"/>
+            </p:selectManyCheckbox   > 
+            <p:selectManyCheckbox id="pageDirection3" layout="grid" value="#{ajoutPublicationController.champssup2}"  > 
+            <f:selectItem itemLabel="edition" itemValue="edition"/>
+            <f:selectItem itemLabel="chapitre" itemValue="chapitre"/>
+            <f:selectItem itemLabel="organisation" itemValue="organisation"/>  
+            <f:selectItem itemLabel="etablissement" itemValue="etablissement"/>
+              
+         </p:selectManyCheckbox >  
+          
+         <p:commandButton id="pluschampsok"   action="#{ajoutPublicationController.autrechamps()}" onclick="dlg.hide()"  value="OK" update=":form:panelchampsupp,:form:panelchampsupp3,:form:panelchampsupp2"  /> 
+    
+              
+              </h:panelGrid >
+  </h:form>
+               </p:dialog>
+ 
+                    <h:form>
+                        
+                    </h:form>
+                   
+  
+             <script type="text/javascript">  
+    function handleLoginRequest(xhr, status, args) {  
+        if(args.validationFailed || !args.loggedIn) {  
+            dlg.jq.effect("shake", { times:5 }, 100);  
+        }   
+        else {  
+            dlg.hide();  
+            $('#loginLink').fadeOut();  
+        }  
+    }  
+   
+</script>                     
+                </p:layoutUnit>
+               
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+
